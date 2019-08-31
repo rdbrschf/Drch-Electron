@@ -1,13 +1,5 @@
 const { app, BrowserWindow } = require('electron')
 
-if (require('electron-squirrel-startup')) app.quit()
-// if first time install on windows, do not run application, rather
-// let squirrel installer do its work
-const setupEvents = require('./installers/setup-events')
-if (setupEvents.handleSquirrelEvent()) {
-  process.exit()
-}
-
 // Behalten Sie eine globale Referenz auf das Fensterobjekt. 
 // Wenn Sie dies nicht tun, wird das Fenster automatisch geschlossen, 
 // sobald das Objekt dem JavaScript-Garbagekollektor übergeben wird.
