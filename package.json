@@ -2,7 +2,7 @@
   "name": "Drch-Electron",
   "version": "1.0.0",
   "description": "DEMO: https://junauplayer.github.io",
-  "main": "index.js",
+  "main": "main.js",
   "build": {
     "appId": "com.jamzi.quickstart",
     "win": {
