@@ -17,7 +17,7 @@ Code darf frei benutzt und geändert werden, es gibt hier aber keinen Support un
 - Geschenke, SuperMessages und Mutes werden im Chat angezeigt (kann einzeln deaktiviert werden)
 
 ## Nutzung mit npm / Build
-Benötigt wird [NodeJS](https://nodejs.org/en/), wenigstens Version 10.16.3 (LTS)  und [git](https://git-scm.com/downloads)  
+Benötigt wird [NodeJS](https://nodejs.org/en/), wenigstens Version 12.4.0 und [git](https://git-scm.com/downloads)  
 
 ```
 git clone https://github.com/HengiFettlich/Drch-Electron.git
