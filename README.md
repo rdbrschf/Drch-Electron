@@ -10,7 +10,7 @@ Code darf frei benutzt und geändert werden, es gibt hier aber keinen Support un
 
 
 ## Funktionen
-- YouNow-Streams ohne Login ansehen, auch mit mehreren Gästen
+- Junau-Streams ohne Login ansehen, auch mit mehreren Gästen
 - Screenshotfunktion
 - Direktlinkfunktion
 - Grundlegende Statistiken: Likes, Zuschauer auf YN, stummgeschaltete User
