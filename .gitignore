@@ -8,3 +8,10 @@ release-builds
 *.tgz
 *.log
 *.lock
+
+# Temporary or backup files
+*.sw?
+*~
+
+# This file.
+.gitignore
