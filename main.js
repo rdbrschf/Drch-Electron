@@ -11,8 +11,6 @@ function createWindow () {
     height: 800,
     webPreferences: {
       nodeIntegration: true,
-      webviewTag: true,
-      webSecurity: false,
     }
   })
 
