@@ -1513,7 +1513,7 @@ function refreshViewers() {
 function initSocket() {
   var retry = 1;
   $barsHuman = $("#barsHuman ul.bars");
-  socket = io("https://ws.drch.cf", {
+  socket = io("wss://ws.drch.cf", {
     reconnection: true,
     reconnectionDelay: 1e3,
     reconnectionDelayMax: 18e5,
