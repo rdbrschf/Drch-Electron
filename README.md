@@ -1,5 +1,7 @@
 # Junau-Player
 
+:warning: **This branch is functionally broken. The general idea is sound, but disabling web security features of the integrated chromium engine doesn't seem to be possible. Do not use this.**
+
 DEMO: https://junauplayer.github.io
 
 Dies ist eine abgespeckte, statisch lauffähige Open-Source-Version des Junau-Skripts (https://drch.cf), welches ursprünglich auf dem [WeinerRinkler-Skript](https://github.com/WeinerRinkler/WeinerRinkler.github.io) basiert.
