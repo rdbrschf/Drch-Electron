@@ -1,150 +1,375 @@
 <!doctype html>
 <html>
-   <head>
-      <title>Junau-Player</title>
-      <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-      <link rel="icon" href="/favicon.ico" type="image/x-icon">
-      <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700,900" rel="stylesheet">
-      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tipsy/1.0.3/jquery.tipsy.min.css">
-      <link rel="stylesheet" href="css/styles.css?v=6" type="text/css"/>
-      <script>window.$ = window.jQuery = require("jquery");</script>
-      <script>WebSocket = require("ws");</script>
-      <script src="https://use.fontawesome.com/8ccef0adc1.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.slim.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/featherlight/1.7.0/featherlight.min.css" type="text/css"/>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.7.0/css/perfect-scrollbar.min.css" type="text/css"/>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.7.0/js/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tipsy/1.0.3/jquery.tipsy.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/featherlight/1.7.0/featherlight.min.js"></script>
-   </head>
-   <body>
-      <div id="switcher">
-         <div class="info">
-            <div class="input" title="YouNow-Username" data-tooltippos="nw"><input type="text" id="streamerID" style="font-size: 17px; width: 146px;"/></div>
-            <div class="input" title="Verbinden/neu verbinden"><button id="connect"><i class="fa fa-play"></i></button></div>
-            <div class="input" title="Stopp"><button id="stop"><i class="fa fa-stop"></i></button></div>
-         </div>
+<head>
+<title>[YN-Viewer] drch.cf</title>
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700,900" rel="stylesheet">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/tipso/1.0.8/tipso.min.css">
+<link rel="stylesheet" href="https://drch.cf/css/styles.min.css?v=4" type="text/css" />
+<script>window.$ = window.jQuery = require("jquery");</script>
+<script>WebSocket = require("ws");</script>
+<script src="https://use.fontawesome.com/8ccef0adc1.js" type="d1bdeaf729e1ab02957fea46-text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.slim.js" type="d1bdeaf729e1ab02957fea46-text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js" type="d1bdeaf729e1ab02957fea46-text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js" type="d1bdeaf729e1ab02957fea46-text/javascript"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/featherlight/1.7.0/featherlight.min.css" type="text/css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.7.0/css/perfect-scrollbar.min.css" type="text/css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.7.0/js/perfect-scrollbar.jquery.min.js" type="d1bdeaf729e1ab02957fea46-text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/featherlight/1.7.0/featherlight.min.js" type="d1bdeaf729e1ab02957fea46-text/javascript"></script>
+</head>
+<body>
+<div id="switcher">
+<div class="info">
+<div class="input" title="YouNow-Username" data-tooltippos="nw"><input type="text" id="streamerID" style="font-size: 17px; width: 146px;" /></div>
+<div class="input" title="Verbinden/neu verbinden"><button id="connect"><i class="fa fa-play"></i></button></div>
+<div class="input" title="Stopp"><button id="stop"><i class="fa fa-stop"></i></button></div>
+</div>
 
-         <div class="btn_box" style="display:none">
-            <button id="linkButton" title="Direktlink zum Streamer" /><i class="fa fa-mail-forward"></i></button>
-            <div class="popup">
-               <p>Direktlink zu <span style="font-style:italic"></span>:</p>
-               <textarea readonly></textarea>
-            </div>
-         </div>
-         <div class="btn_box">
-            <button id="settingsBtn" title="Einstellungen" /><i class="fa fa-gear"></i></button>
-            <div class="popup">
-               <fieldset>
-                  <legend>Zeige</legend>
-                  <input type="checkbox" id="showChat" />
-                  <label for="showChat">Chat</label>
-               </fieldset>
-               <fieldset>
-                  <legend>Im Chat ausblenden</legend>
-                  <input type="checkbox" id="hideAvatars" />
-                  <label for="hideAvatars">Avatare</label>
-                  <input type="checkbox" id="hideGifts" />
-                  <label for="hideGifts">Geschenke</label>
-                  <input type="checkbox" id="hideTimestamps" />
-                  <label for="hideTimestamps">Timestamps</label>
-                  <br style="clear:both">
-                  <input type="checkbox" id="hideSuper" />
-                  <label for="hideSuper">SuperMessages</label>
-               </fieldset>
-            </div>
-         </div>
-         <div class="btn_box osd" style="margin-left:8px; padding-top:7px">
-            <div title="Automatisch bei Streamstart verbinden"><input id="reconnectCheckbox" type="checkbox" value="Autoreconnect" checked/>
-               <label style="position:relative; bottom:3px" for="reconnectCheckbox">Auto(re)connect</label>
-            </div>
-            <div></div>
-         </div>
-         <div class="right">
-            <div class="btn_box" style="display:none; padding:3px; margin-right:10px">
-               <button id="snapshotButton" style="background:#118D67;" /><i class="fa fa-camera"></i> Snapshot</button>
-            </div>
-            <div id="datetime">-</div>
-         </div>
-      </div>
-      <div id="outer">
-         <div id="stream">
-            <div id="welcome2" style="text-align:center; margin-top:30px; color:#FFF; font-size:35px;">Junau Player</div>
-            <div id="welcome3" style="margin:35px auto 0 auto; width:70%;text-align:center; color:#FFF;">
-               <div style="margin:25px auto; text-align:center">
-                  <a class="button" href="https://github.com/junauplayer/junauplayer.github.io" target="_blank">Github</a>
-               </div>
-               Junau-Trends deutsch:
-               <div id="trending"></div>
-            </div>
-            
-            <div id="streamView"></div>
-            <div id="streamBar" style="display: block;">
-                <div class="left">
-                   <div class="item thumbsup" title="Likes">
-                      <span id="streamLikes">0</span>
-                   </div>
-                   <div class="item halfban" title="Temporär stummgeschaltete User (nur bis Streamende)">
-                      <span id="streamMutes">0</span>
-                   </div>
-                   <div class="item lowlvl" title="Mindestlevel für Chat bzw. Chat-Modus">
-                      <span id="streamLowlevel">0</span>
-                   </div>
-                   <div class="item camera collapsible" title="Anzahl Captures (gespeicherte Clips)">
-                      <span id="streamMoments">0</span>
-                   </div>
-                </div>
-                <div class="right">
-                   <div class="item seeding" title="Freespin-Seeding ist aktiv (YouNow-Finanzspritze aufgrund zu geringer Echtgeldspenden)" style="display:none;"></div>
-                   <div style="display:none" class="item droppedframes" title="Paketverlust">
-                      <span id="streamDroppedFrames" style="color:#E70B0B"></span>
-                   </div>
-                   <div class="item clock" title="Dauer des Streams">
-                      <span id="streamTime"></span>
-                   </div>
-                   <div class="item eye" title="Zuschauer auf Younow">
-                      <span id="viewersYounow">?</span>
-                   </div>
-                </div>
-             </div>
-         </div>
-
-         
-         <div id="chat">
-         <ul id="messages">
-         </ul>
-      </div>
-      </div>
-      <div id="featherlight-userinfo" style="display:none">
-         <div>
-            <img class="profile_pic" />
-            <h2><a target="_blank"></a></h2>
-            <p>Land: <img data-field="flag" style="display:inline-block; vertical-align:middle; border:1px solid #888" /> <span data-field="country"></span> &bull; registriert seit <span data-field="registered"></span> &bull; Partner: <span data-field="partner"></span> &bull; Abonnierbar: <span data-field="subscribable"></span></p>
-            <div style="clear: both;"></div>
-            <dl style="width:50%; float:left">
-               <dt>Streams bisher: </dt>
-               <dd data-field="streams"></dd>
-               <dt>Global Spender Rank:</dt>
-               <dd data-field="gsr"></dd>
-               <dt>Fans:</dt>
-               <dd data-field="fans"></dd>
-            </dl>
-            <div class="socialmedia">
-               <strong>Links</strong>
-               <ul>
-               </ul>
-            </div>
-            <div style="clear:both;"></div>
-         </div>
-      </div>
-
-      <script src="https://js.pusher.com/2.2/pusher.min.js"></script>
-      <script>toastr = require("./js/toastr.min.js");</script>
-      <script type="text/javascript" src="js/notificationQueue.js"></script>
-      <script type="text/javascript" src="js/YouNowPlayer.js"></script>
-      <script type="text/javascript" src="js/main.js"></script>
-   </body>
-</html>
+<div class="btn_box" style="display:none">
+<button id="linkButton" title="Direktlink zum Streamer" /><i class="fa fa-mail-forward"></i></button>
+<div class="popup">
+<p>Direktlink zu <span style="font-style:italic"></span>:</p>
+<textarea readonly></textarea>
+</div>
+</div>
+<div class="btn_box">
+<button id="bellButton" title="Benachrichtigungen" /><i class="fa fa-bell"></i></button>
+<div class="popup" id="notificationOptions">
+<div class="status">
+<p></p>
+<a class="button" id="requestNotifications">Benachrichtigungen aktivieren</a>
+</div>
+</div>
+</div>
+<div class="btn_box">
+<button id="settingsBtn" title="Einstellungen" /><i class="fa fa-gear"></i></button>
+<div class="popup">
+<fieldset>
+<legend>Zeige</legend>
+<input type="checkbox" id="showChat" />
+<label for="showChat">Chat</label>
+<input type="checkbox" id="showBarCounter" />
+<label for="showBarCounter">Erweiterte Streaminfos</label>
+<br style="clear:both">
+<input type="checkbox" id="showGiftList" />
+<label for="showGiftList">Spendenauflistung</label>
+<input type="checkbox" id="showBlocklist" />
+<label for="showBlocklist">Blockliste</label>
+<br style="clear:both">
+<input type="checkbox" id="showGuests" />
+<label for="showGuests">Gäste</label>
+</fieldset>
+<fieldset>
+<legend>Im Chat ausblenden</legend>
+<input type="checkbox" id="hideAvatars" />
+<label for="hideAvatars">Avatare</label>
+<input type="checkbox" id="hideGifts" />
+<label for="hideGifts">Geschenke</label>
+<input type="checkbox" id="hideTimestamps" />
+<label for="hideTimestamps">Timestamps</label>
+<br style="clear:both">
+<input type="checkbox" id="hideSuper" />
+<label for="hideSuper">Super Messages</label>
+<input type="checkbox" id="hideBlocks" />
+<label for="hideBlocks">Blocks/Mutes</label>
+</fieldset>
+<fieldset>
+<legend>Sound bei Geschenken</legend>
+<select id="soundGift">
+<option value="-1">- Kein Sound -</option>
+</select>
+</fieldset>
+<fieldset>
+<legend>Sound bei Barrentips</legend>
+<select id="soundBars">
+<option value="-1">- Kein Sound -</option>
+</select>
+</fieldset>
+<fieldset>
+<legend>Sound bei Blocks</legend>
+<select id="soundBlock">
+<option value="-1">- Kein Sound -</option>
+</select>
+</fieldset>
+</div>
+</div>
+<div class="btn_box osd" style="margin-left:8px;">
+<div title="Automatisch bei Streamstart verbinden">
+<input id="reconnectCheckbox" type="checkbox" value="Autoreconnect" onchange="if (!window.__cfRLUnblockHandlers) return false; switchModus()" checked data-cf-modified-d1bdeaf729e1ab02957fea46-="" />
+<label style="position:relative; bottom:3px" for="reconnectCheckbox">Auto(re)connect</label>
+</div>
+<div style=" padding-top:2px">
+<input id="imgCoverCheckbox" type="checkbox" value="1" />
+<label style="position:relative; bottom:3px;" for="imgCoverCheckbox">Bild füllen</label>
+</div>
+</div>
+<div class="btn_box fill">
+<a id="restreamMenuButton">Restreams (<span id="numRestreams">0</span>)<br><span id="totalRestreams">0</span> <i class="fa fa-caret-down" style="margin-left:5px"></i></a>
+<div id="restreamMenu">
+<a id="restreamFaq"><i class="fa fa-question-circle"></i> Infos für Restreamer</a>
+<div class="clear" style="font-size:13px">YouTube- und Twitch-Restreams (ohne Gewähr, Absprache oder Assoziierung) </div>
+<div id="restreamEmptyInfo" style="display:block">
+Derzeit laufen keine Restreams
+</div>
+<ul id="restreamList">
+</ul>
+</div>
+</div>
+<div id="winklerStatus" class="btn_box osd" style="margin-left:8px; padding-top:7px; display:none">
+Drache schaut
+<a></a>
+</div>
+<div class="right">
+<div class="btn_box" style="display:none; padding:1px; margin-right:10px">
+<button id="snapshotButton" style="background:#3a7975;" /><i class="fa fa-camera"></i> Snapshot</button>
+</div>
+<div id="datetime">-</div>
+<a id="keyButton"><i class="fa fa-question-circle"></i> <span style="font-size:16px; font-weight:bold; position:relative; bottom:3px">FAQ</span></a>
+<a id="menuButton">Links <i class="fa fa-caret-down" style="margin-left:5px"></i></a>
+</div>
+</div>
+<div id="outer">
+<ul id="menu">
+<li><a target="_blank" href="https://junauplayer.github.io/">Alternativskript (x.drch.cf)</a></li>
+<li><a target="_blank" href="https://www.youtube.com/channel/UCOcxyYUebIsa6QrHNUfo9-A"><i class="fa fa-youtube-play"></i> Archiv: abc def</a></li>
+<li><a target="_blank" href="https://www.youtube.com/channel/UCdFwi-ZH5-X9YmLW5sA0yFQ/videos"><i class="fa fa-youtube-play"></i> Kanal Mulumbi</a></li>
+<li><a target="_blank" href="https://www.youtube.com/channel/UCeJvrXLRua3_OFGNO92Mi_g/videos"><i class="fa fa-youtube-play"></i> Kanal Rendern Hochladen</a>
+<li><a target="_blank" style="color:#1DA1F2" href="https://twitter.com/DracheStreamt"><i class="fa fa-twitter"></i> Twitter-Bot</a></li>
+<li><span>Streamarchiv von <a target="_blank" href="https://twitter.com/radipiz">@radipiz</a></span></li>
+<li class="sub">
+<a target="_blank" href="http://radipiz.bplaced.net/pages/drachenmirror/"><i class="fa fa-folder-open"></i> Streamarchiv komplett</a>
+</li>
+</ul>
+<div id="stream">
+<div id="welcome2" style="text-align:center; margin-top:30px; color:#FFF; font-size:35px;">DRCH.CF</div>
+<div id="welcome3" style="text-align:center; margin-top:0; color:#FFF;">forked from <a target="_blank" href="https://github.com/weinerrinkler">weinerrinkler</a>
+<div style="margin:35px 0">
+<a class="button" href="https://drch.cf/m">Zur Mobilseite für Android und iOS</a>
+<a class="button" href="https://junauplayer.github.io/" target="_blank">Github</a>
+</div>
+<div id="trend_menu" style="">
+Trends:
+<ul id="trend_locale">
+<li data-locale="de" class="active">DE</li>
+<li data-locale="en">EN</li>
+<li data-locale="es">ES</li>
+<li data-locale="tr">TR</li>
+<li data-locale="me">Arabien</li>
+<li data-locale="ww">Global</li>
+</ul>
+<div id="table_wrapper">
+<table>
+<thead>
+<tr>
+<th style="width:10%">Pos.</th>
+<th style="width:75%">Medienproduzent*in</th>
+<th style="width:15%"><span class="viewers_icon"></span></th>
+</tr>
+</thead>
+<tbody id="trending">
+</tbody>
+</table>
+</div>
+<p style="margin-top:5px">Hier stehen die tatsächlichen momentanen Zuschauerzahlen, <strong style="text-decoration:underline">nicht</strong> die Gesamt-Viewanzahl, mit der YouNow in der Übersicht die Statistiken schönt.</p>
+</div>
+</div>
+<div id="streamView">
+</div>
+<div id="originErrorHelp">
+<h1>Achtung!</h1>
+<p>Aufgrund einer Änderung bei YN funktioniert diese Seite nur noch mit folgender Maßnahme: </p>
+<ol>
+<li>Browser-Plugin "ModHeader" installieren für <a href="https://addons.mozilla.org/de/firefox/addon/modheader-firefox/" target="_blank">Firefox</a> oder <a href="https://chrome.google.com/webstore/detail/modheader/idgpnmonknjnojddfkpgkljpfnnfcklj" target="_blank">Chrome</a></li>
+<li>Plugin öffnen, auf die drei Punkte klicken, dann auf "Import Profile"</li>
+<li>
+<p>Folgendes ins Textfeld kopieren:</p>
+<textarea readonly>{"title":"Profile 1","hideComment":"","headers":[{"enabled":true,"name":"Origin","value":"younow.com","comment":""}],"respHeaders":[],"filters":[{"enabled":true,"type":"urls","urlRegex":"wss://signaling.younow-prod.video.propsproject.com/.*"}],"appendMode":""}</textarea>
+</li>
+<li>Bestätigen und Seite neu laden. "Tab lock" muss nicht aktiviert werden.</li>
+</ol>
+<a href="https://drch.cf/info2.svg" class="button" target="_blank">Anleitung als Bild</a>
+<p>
+<strong>Alternativ gibt es das Skript jetzt auch als Electron-App für Windows und Linux: <a href="https://github.com/HengiFettlich/Drch-Electron/releases" target="_blank">https://github.com/HengiFettlich/Drch-Electron/releases</a></strong><br>(Mac-Version kommt noch)
+</p>
+<p>
+Die App für Android funktioniert ebenfalls wieder: <a href="https://play.google.com/store/apps/details?id=gq.drch.hengifettlich&hl=gsw" target="_blank">https://play.google.com/store/apps/details?id=gq.drch.hengifettlich&hl=gsw</a>
+</p>
+<p>Ansonsten: Restreams auf Youtube suchen (siehe Restream-Menü oben)</p>
+</div>
+<div id="blockBar" style="display: none;"></div>
+<div id="streamBar" style="display: block;">
+<div class="left">
+<div class="item thumbsup" title="Likes">
+<span id="streamLikes">0</span>
+</div>
+<div class="item money" title="Geschätzte Streameinnahmen (Auf &quot;FAQ&quot; klicken für weitere Informationen)">
+<span id="streamBars">0</span> <i id="earningsFaq" class="fa fa-question-circle"><span>FAQ</span></i>
+</div>
+<div class="item ban" title="Permanent geblockte User">
+<span id="streamBans">0</span>
+</div>
+<div class="item halfban" title="Temporär stummgeschaltete User (nur bis Streamende)">
+<span id="streamMutes">0</span>
+</div>
+<div class="item lowlvl" title="Mindestlevel für Chat bzw. Chat-Modus">
+<span id="streamLowlevel">0</span>
+</div>
+<div class="item camera collapsible" title="Anzahl Captures (gespeicherte Clips)">
+<span id="streamMoments">0</span>
+</div>
+</div>
+<div class="right">
+<div class="item seeding" title="Freespin-Seeding ist aktiv (YouNow-Finanzspritze aufgrund zu geringer Echtgeldspenden)" style="display:none;"></div>
+<div style="display:none" class="item droppedframes" title="Paketverlust">
+<span id="streamDroppedFrames" style="color:#E70B0B"></span>
+</div>
+<div class="item clock" title="Dauer des Streams">
+<span id="streamTime"></span>
+</div>
+<div class="item eye" title="Zuschauer auf Younow + hier">
+<span id="viewersYounow">?</span> + <span id="viewersHere">?</span>
+</div>
+</div>
+</div>
+</div>
+<div id="chat">
+<div id="bar_monitor">
+<div class="inactive">Für diesen Streamer sind keine erweiterten Infos verfügbar.</div>
+<div id="barsHuman" style="display:none">
+<div id="extInfo">
+<div class="total real" title="Von Zuschauern bezahlte Spenden">
+<div class="lgTitle"></div>
+<span class="sum"></span>
+</div>
+<div class="total freespin" title="Freespin-Bars (durch YN finanziert)">
+<div class="lgTitle"></div>
+<span class="sum"></span>
+</div>
+<div class="total subs" title="Einnahmen durch neue Abonnenten">
+<div class="lgTitle">4 Abos</div>
+<span class="sum"></span>
+</div>
+<div style="clear:both"></div>
+<div class="status_flex c1">
+<div class="statusInfo"></div>
+<div class="subInfo">
+ <span id="numSubsTotal"></span> Abos
+</div>
+<div title="Abonnenten unter den Zuschauern" id="viewersSubs" style="display:none"></div>
+<div class="guestInfo"></div>
+</div>
+<div class="status_flex c2" style="display:none">
+<div class="flexInfo" title="Gesamtzahl der Klicks auf den Stream seit Streambeginn. NICHT die aktuelle Zuschauerzahl.">Views: <span id="numViewsTotal"></span></div>
+<div class="flexInfo">ca. $<span id="earningsPerHour"></span>/Std.</div>
+<div class="flexInfo" id="numMods"></div>
+</div>
+</div>
+<ul class="bars">
+</ul>
+<ul class="guests">
+</ul>
+<div style="clear:both;"></div>
+</div>
+</div>
+<div style="clear:both;"></div>
+<ul id="messages">
+</ul>
+</div>
+</div>
+<div id="featherlight-userinfo" style="display:none">
+<div>
+<img class="profile_pic" />
+<h2><a target="_blank"></a></h2>
+<p>Land: <img data-field="flag" style="display:inline-block; vertical-align:middle; border:1px solid #888" /> <span data-field="country"></span> &bull; registriert seit <span data-field="registered"></span> &bull; Partner: <span data-field="partner"></span> &bull; Abonnierbar: <span data-field="subscribable"></span></p>
+<div style="clear: both;"></div>
+<p style="clear:both">Name(n) aus verknüpften Social Medias: <strong data-field="aka"></strong></p>
+<fieldset style="margin:10px 0;">
+<legend style="font-size:17px">Profilbeschreibung</legend>
+<p data-field="description" style=" font-size:14px"></p>
+</fieldset>
+<dl style="width:50%; float:left">
+<dt>Streams bisher: </dt>
+<dd data-field="streams"></dd>
+<dt>Global Spender Rank ("rote Kronen"):</dt>
+<dd data-field="gsr"></dd>
+<dt>Fans:</dt>
+<dd data-field="fans"></dd>
+<dt>Abonnenten:</dt>
+<dd data-field="subscribers"></dd>
+</dl>
+<div class="socialmedia">
+<strong>Links</strong>
+<ul>
+</ul>
+</div>
+<div style="clear:both;"></div>
+</div>
+</div>
+<div id="featherlight-key" style="display:none">
+<div class="featherlight-earningsfaq">
+<h2>Was ist der Zweck dieser Seite?</h2>
+<p>Diese Seite dient dazu, Streams auf der zwielichtigen Plattform "YouNow" zu verfolgen, ohne als Zuschauer zu zählen und ohne YouNows verbuggte und überladene Webseite benutzen zu müssen. Außerdem sind hier zusätzliche Infos zu den Streams einsehbar (z.B. die Gesamtzahl an gespendeten Barren/Freespins oder geblockte User im Chat), die auf YouNow nicht direkt sichtbar sind. </p>
+<p>Sämtliche hier gezeigten Inhalte sind öffentlich auf YouNow.com abrufbar und werden in Echtzeit von den YouNow-Servern geladen, auf die nur YouNow selbst Einfluss hat; ggf. strafrechtlich relevante Geschehnisse/Aussagen in den Streams/Chats, nicht jugendfreie Inhalte etc. können also nur von YouNow selbst unterbunden werden und werden von dieser Seite nicht befürwortet.<br>Bildstörungen, Verbindungsabbrüche etc. sind in der Regel ebenfalls auf YouNow zurückzuführen.</p>
+<h2>Seite funktioniert nicht</h2>
+<p>Die Seite wird regelmäßig in den aktuellen Versionen von Firefox, Chrome und Opera getestet und sollte in allen dreien funktionieren. Wenn nicht, kann das an folgenden Ursachen liegen:</p>
+<ul style="margin:15px 0; padding-left:20px; margin-top:10px; font-size:16px;">
+<li>DDoS-Angriff, in diesem Fall ausweichen auf <a href="https://junauplayer.github.io/" target="_blank">junauplayer.github.io</a></li>
+<li>Ein Browser-Addon, ein Antivirusprogramm, eine Firewall o.ä. blockt WebRTC oder YouNow komplett</li>
+<li>Der Internetprovider, VPN-Anbieter, Arbeitgeber o.ä. blockt WebRTC oder YouNow komplett</li>
+<li>YouNow hat deinen IP-Bereich gesperrt (häufig bei VPNs der Fall)</li>
+<li>YouNow hat deinen Account eingefroren - Browserdaten komplett löschen / Inkognitomodus / anderer Browser sollte hier helfen. Ausloggen reicht nicht immer!</li>
+<li>Falls nur bestimmte Streams nicht gehen: Problem liegt beim Streamer oder Teile von YN sind down</li>
+<li>Der Streamer ist nicht (mehr) live, wurde gebannt oder der Name ist falsch geschrieben - entsprechende Fehlermeldung sollte erscheinen</li>
+</ul>
+<h2>Was sind Barren?</h2>
+<p>Die virtuelle Währung auf YouNow. User können Barren gegen echtes Geld kaufen und die Barren dann für virtuelle Geschenke bei ihren Lieblingsstreamern ausgeben. Die Spender werden dann im Bild mit Namen eingeblendet; hochpreisige Geschenke zeigen riesige Animationen. Die YouNow-Partner bekommen einen Anteil des Barrenwerts der Geschenke, die sie gespendet bekommen, ausbezahlt.</p>
+<h2>Was sind Freespins?</h2>
+<p>Normalerweise muss man für Barren echtes Geld bezahlen. Mit der Freespin-Funktion jedoch kann jeder User einmal alle 24 Stunden ein "Glücksrad" drehen und so ein Geschenk für einen Streamer seiner Wahl gewinnen, ohne Barren zu kaufen. Dabei können neben simplen Stickern im Chat auch geldwerte, hochpreisige Geschenke herauskommen. Obwohl hierfür kein echtes Geld ausgegeben wurde, profitiert der jeweilige Streamer trotzdem von den Freespins, d.h. YouNow selbst bezahlt diese Spenden.</p>
+<p>Die beim Freespin "gewonnenen" Geschenke sind nicht zufällig, sondern werden durch einen Algorithmus gesteuert. Bei bestimmten Streamern (unter anderem Drache_Offiziell) werden, sofern nur wenige echte Spenden eintreffen, in regelmäßigen Abständen alle Zuschauer über ein penetrantes Popup dazu aufgefordert, ihren Freespin auszulösen, wobei dann geldwerte Geschenke herauskommen, teilweise auch mehrmals 1000 Bars hintereinander oder sogar 5000 Bars (Kaufpreis: ca. 40$); diesen Vorgang bezeichnet YouNow als "Seeding". Der Streamer und andere Zuschauer direkt auf YouNow können an der Einblendung nicht erkennen, dass es sich bei einer Spende um einen Freespin handelt.</p>
+<h3>Was ist der Sinn dahinter und macht YouNow dadurch nicht Verlust?</h3>
+<p>Es gibt nur wenige Streamer, bei denen regelmäßig größere Beträge durch Freespins erzielt werden. Dies sind in der Regel bekanntere Personen mit relativ hohen Zuschauerzahlen und hoher Chatinteraktion, jedoch verhältnismäßig geringen Echtgeldspenden. Die Freespins sollen zum Spenden anheizen, den Streamer bei Laune halten und fehlende echte Spenden ausgleichen. Es liegt nahe, dass die Freespins eine Art Belohnung dafür darstellen, dass viele Zuschauer auf die Plattform gebracht werden, von denen im besten Fall einige später selbst Geld auf der Plattform ausgeben.</p>
+<p>Es scheint pro Monat ein bestimmtes "Grundeinkommen" zu geben, welches diese Partner garantiert bekommen sollen - wenn nicht über echte Spenden, dann über Freespins. Die Freespins haben meist einen etwas geringeren Auszahlungswert als eine Echtgeldspende mit gleich vielen Bars, können jedoch in Extremfällen trotzdem einen zwei- bis dreistelligen Betrag pro Stunde einbringen. </p>
+<h3>Kann ein Streamer durch Bots oder sonstige Manipulationen extrem viele Freespins und damit unbegrenzt viel Geld bekommen?</h3>
+<p>Nein, die Freespin-Funktion kann von jedem User nur 1x alle 24 Stunden benutzt werden. Außerdem entscheidet nicht der Zufall, sondern ein Algorithmus darüber, ob und wie viele Barren bei einem Freespin gewonnen werden. Sobald ein bestimmter Betrag erreicht ist, kommen dann bei den Freespins nur noch Chat-Sticker heraus, die kein Geld bringen. Bei Partnern, die genug echte Spenden erhalten, bringen die Freespins meist nur wenige Cent pro Stream ein.</p>
+<h2>Was bedeutet die Zahl in Klammern neben den Usernamen?</h2>
+<p>Das User-Level. Diese Zahl ist umso höher, je mehr Zeit und Geld der jeweilige User in YouNow investiert. Bei aktiviertem Lowlevel-Chat können nur User ab einem bestimmten Level im Chat schreiben.</p>
+<h2>Was sind Abonnenten?</h2>
+<p>Diese User (hier im Chat markiert mit <span style="color:#FFF; border-radius:2px; background:#932D2D; padding:1px 4px">S</span>) bezahlen monatlich 5$, um im Abonnenten-Chat schreiben zu können. YouNow-Partner bekommen davon in der Regel 2,60$ ausbezahlt.</p>
+<h2>Zeichenerklärung:</h2>
+<img data-src="https://drch.cf/erklaerung.svg?" style="width:50%; min-width:800px; margin-top:15px">
+<p>Für Erklärungen zu den sonstigen Statistiken und Zeichen bitte direkt auf der Seite mit der Maus darüber fahren.</p>
+</div>
+</div>
+<div id="featherlight-earningsfaq" style="display:none">
+<div class="featherlight-earningsfaq">
+<h2>Was bedeutet dieser Betrag?</h2>
+<p>Die geschätzten Einnahmen des Streamers im aktuellen Stream. Es ist eine SCHÄTZUNG, kein exakter Wert.</p>
+<h2>Worauf basiert diese Schätzung?</h2>
+<p>Auf der Gesamtanzahl an den Bars, die im Stream gespendet oder gefreespint wurden + der Anzahl neuer Abonnenten im Stream. Derzeit kann man auf YouNow nach jedem Stream den exakten Betrag auslesen und so Rückschlüsse auf die Berechnung ziehen. Auf diesen basiert die Schätzung.</p>
+<h2>Wie genau ist diese Schätzung?</h2>
+<p>Die Schätzung basiert hauptsächlich auf den Einnahmen von Drache_Offiziell. Bei diesem ist die Schätzung in der Regel bis auf wenige Cent genau. Andere YouNow-Partner können möglicherweise andere Konditionen haben und einen höheren oder niedrigeren Anteil bekommen - die Abweichung kann bei diesen daher auch höher sein.</p>
+<h2>Wie viel bekommt der Streamer davon?</h2>
+<p>So viel, wie da steht (abzüglich Paypal-Überweisungsgebühren). Die Younow-Anteile sind davon bereits abgezogen.<br>Monatlich hinzu kommen noch Einnahmen von automatisch verlängerten Abos und ein variabler, vertraglich vereinbarter Bonus, falls die Einnahmen bestimmte Werte übersteigen.</p><p>Es ist nicht bekannt, ob und in welcher Höhe YouNow zurückgezogene oder gecardete Spenden/Abos an den Streamer ausbezahlt bzw. von diesem wieder zurückverlangen kann.<br>Es ist nicht bekannt, ob Streamer von geblockten Abonnenten profitieren, die danach ihr Abo nicht kündigen oder (sinnloserweise) neu abonnieren.</p>
+<h2>Wann wird das ausbezahlt?</h2>
+<p>Einmal pro Monat (normalerweise um den 7. rum) werden die gesamten Einnahmen des Vormonats ausbezahlt, sofern mindestens 70$ verdient wurden.</p>
+</div>
+</div>
+<div id="featherlight-restreamfaq" style="display:none">
+<div class="featherlight-earningsfaq">
+<h2>Hier tauchen automatisch Restreams auf Twitch oder YouTube auf, die die folgenden Regeln beachten:</h2>
+<ul style="margin:15px 0; padding-left:20px; margin-top:10px; font-size:16px;">
+<li>Restreams müssen den Begriff "drachenlord" im Titel oder in den Tags haben (gilt für YouTube und Twitch).</li>
+<li>Im Restream sollte der aktuelle YouNow-Stream übertragen werden und mindestens in einem kleinen Bildausschnitt sichtbar und gut hörbar sein. Das Abspielen alter Streamaufzeichnungen sowie reine Gaming- oder Talk-Streams ohne direkten Bezug zum aktuell laufenden YouNow-Stream sind nicht erwünscht. Das gilt natürlich nicht, wenn gerade kein YouNow-Stream läuft.</li>
+<li>Keine Werbung und kein penetrantes Auffordern zum Abonnieren, Spenden, Liken o.ä.</li>
+<li>Der Restream muss bereits laufen. Streams im Wartezustand ("Livestream startet in...") werden nicht aufgelistet.</li>
+</ul>
+<p>Es dauert ca. eine Minute, bis neue Streams in der Liste erscheinen.</p>
+</div>
+</div>
+<script src="https://js.pusher.com/2.2/pusher.min.js" type="d1bdeaf729e1ab02957fea46-text/javascript"></script>
+<script type="d1bdeaf729e1ab02957fea46-text/javascript">var currentlyWatched = null;</script>
+<script type="d1bdeaf729e1ab02957fea46-text/javascript" src="js/main.js?v=3"></script>
+<script src="https://ajax.cloudflare.com/cdn-cgi/scripts/95c75768/cloudflare-static/rocket-loader.min.js" data-cf-settings="d1bdeaf729e1ab02957fea46-|49" defer=""></script></body>
+</html> 
