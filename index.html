@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body style="overflow: hidden; margin: 0px; background: #000;">
+    <webview id="drch-webview" src="https://drch.cf" disablewebsecurity webpreferences="webSecurity=false" style="position: absolute; width: 100%; height: 100%;">
+    </webview>
+    <div id="indicator" style="position: absolute; top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%); color: #FFF;">
+    </div>
+    <script>
+      // Some say a webview needs at least one script tag to work (correctly). We concur.
+      onload = () => {
+        const webview = document.getElementById("drch-webview");
+        const indicator = document.querySelector("#indicator");
+
+        const loadstart = () => {
+          indicator.innerText = "Loading, please wait...";
+          indicator.style.display = "block";
+        }
+        const loadstop = () => {
+          indicator.innerText = "Thank you for waiting.";
+          indicator.style.display = "none";
+        }
+        webview.addEventListener("did-start-loading", loadstart);
+        webview.addEventListener("did-stop-loading", loadstop);
+      }
+    </script>
+  </body>
+</html>
