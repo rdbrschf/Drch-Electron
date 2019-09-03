@@ -1,55 +1,54 @@
 const { app, BrowserWindow } = require('electron')
 
-// Behalten Sie eine globale Referenz auf das Fensterobjekt. 
-// Wenn Sie dies nicht tun, wird das Fenster automatisch geschlossen, 
-// sobald das Objekt dem JavaScript-Garbagekollektor übergeben wird.
-
+// Keep a global reference of the window object, if you don't, the window will
+// be closed automatically when the JavaScript object is garbage collected.
 let win
 
 function createWindow () {
-  // Erstellen des Browser-Fensters.
+  // Create the browser window.
   window = new BrowserWindow({
     width: 1200,
     height: 800,
     webPreferences: {
-      nodeIntegration: true
+      nodeIntegration: true,
+      webviewTag: true,
+      webSecurity: false,
     }
   })
 
   // and load the index.html of the app.
   window.loadFile('index.html')
 
-  // Ausgegeben, wenn das Fenster geschlossen wird.
+  // Emitted when the window is closed.
   window.on('closed', () => {
-    // Dereferenzieren des Fensterobjekts, normalerweise würden Sie Fenster
-    // in einem Array speichern, falls Ihre App mehrere Fenster unterstützt. 
-    // Das ist der Zeitpunkt, an dem Sie das zugehörige Element löschen sollten.
+    // Dereference the window object, usually you would store windows
+    // in an array if your app supports multi windows, this is the time
+    // when you should delete the corresponding element.
     window = null
   })
 }
 
-// Diese Methode wird aufgerufen, wenn Electron mit der
-// Initialisierung fertig ist und Browserfenster erschaffen kann.
-// Einige APIs können nur nach dem Auftreten dieses Events genutzt werden.
+// This method will be called when Electron has finished
+// initialization and is ready to create browser windows.
+// Some APIs can only be used after this event occurs.
 app.on('ready', createWindow)
 
-// Verlassen, wenn alle Fenster geschlossen sind.
+// Quit when all windows are closed.
 app.on('window-all-closed', () => {
-  // Unter macOS ist es üblich, für Apps und ihre Menu Bar
-  // aktiv zu bleiben, bis der Nutzer explizit mit Cmd + Q die App beendet.
+  // On macOS it is common for applications and their menu bar
+  // to stay active until the user quits explicitly with Cmd + Q
   if (process.platform !== 'darwin') {
     app.quit()
   }
 })
 
 app.on('activate', () => {
-  // Unter macOS ist es üblich ein neues Fenster der App zu erstellen, wenn
-  // das Dock Icon angeklickt wird und keine anderen Fenster offen sind.
+  // On macOS it's common to re-create a window in the app when the
+  // dock icon is clicked and there are no other windows open.
   if (win === null) {
     createWindow()
   }
 })
 
-// In dieser Datei können Sie den Rest des App-spezifischen 
-// Hauptprozess-Codes einbinden. Sie können den Code auch 
-// auf mehrere Dateien aufteilen und diese hier einbinden.
+// In this file you can include the rest of your app's specific main process
+// code. You can also put them in separate files and require them here.
