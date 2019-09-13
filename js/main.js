@@ -3238,7 +3238,7 @@ YouNowPlayer.prototype.failed = function(error, title, type) {
     newestOnTop: false,
     progressBar: true,
     positionClass: "toast-bottom-full-width",
-    preventDuplicates: false,
+    preventDuplicates: true,
     onclick: null,
     showDuration: "300",
     hideDuration: "1000",
