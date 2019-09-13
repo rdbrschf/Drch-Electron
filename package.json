@@ -30,6 +30,7 @@
     "electron-winstaller": "^4.0.0"
   },
   "dependencies": {
+    "electron-push-receiver": "^2.1.3",
     "electron-squirrel-startup": "^1.0.0",
     "jquery": "^3.4.1",
     "ws": "^7.1.2"
