@@ -1,5 +1,9 @@
 const { app, BrowserWindow } = require('electron')
 
+// Add support for push notifications.
+// Not quite sure if needed so far, so disabled for now.
+// const { setup: setupPushReceiver } = require('electron-push-receiver');
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win
@@ -16,6 +20,10 @@ function createWindow () {
 
   // and load the index.html of the app.
   win.loadFile('index.html')
+
+  // Initialize electron-push-receiver component. Should be called before 'did-finish-load'
+  // Disabled, but we might need it later on.
+  // setupPushReceiver(win.webContents);
 
   // Emitted when the window is closed.
   win.on('closed', () => {
