@@ -503,7 +503,7 @@
     }()
   })
 }("function" == typeof define && define.amd ? define : function(e, t) {
-  window.toastr = t(window.jQuery)
+  "undefined" != typeof module && module.exports ? ( toastr = t(require("jquery")), module.exports = toastr) : window.toastr = t(window.jQuery)
 });
 (function(factory) {
   if (typeof define === "function" && define.amd) {
