@@ -6,7 +6,7 @@ let win
 
 function createWindow () {
   // Create the browser window.
-  window = new BrowserWindow({
+  win = new BrowserWindow({
     width: 1200,
     height: 800,
     webPreferences: {
@@ -15,14 +15,14 @@ function createWindow () {
   })
 
   // and load the index.html of the app.
-  window.loadFile('index.html')
+  win.loadFile('index.html')
 
   // Emitted when the window is closed.
-  window.on('closed', () => {
+  win.on('closed', () => {
     // Dereference the window object, usually you would store windows
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
-    window = null
+    win = null
   })
 }
 
