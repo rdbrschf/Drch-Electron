@@ -1349,18 +1349,18 @@ var stats = {
 };
 var settings = {
   showChat: true,
-  showGuests: false,
-  showFeed: false,
+  showGuests: true,
+  showFeed: true,
   feedPos: "L",
-  showBlocklist: false,
+  showBlocklist: true,
   showBarCounter: true,
-  showGiftList: false,
+  showGiftList: true,
   showOSD: false,
   feedNoPics: false,
   hideAvatars: false,
   hideGifts: false,
   hideSuper: false,
-  hideTimestamps: true,
+  hideTimestamps: false,
   hideBlocks: false,
   soundGift: null,
   soundBars: null,
@@ -1874,7 +1874,7 @@ $(document).ready(function() {
   for (var i in sounds) {
     $("#settingsBtn").siblings(".popup").find("select").append('<option value="' + i + '">' + sounds[i] + "</option>")
   }
-  $("#showChat, #showBarCounter, #hideTimestamps").attr("checked", "checked");
+  $("#showChat, #showBarCounter, #showGiftList, #showBlocklist, #showGuests").attr("checked", "checked");
   $("#feedPosL").prop("checked", true);
   if (typeof $.cookie("layout") !== "undefined") {
     try {
