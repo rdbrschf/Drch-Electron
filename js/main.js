@@ -1364,6 +1364,7 @@ var settings = {
   hideBlocks: false,
   hideBroadcasterName: true,
   hideStreamBars: true,
+  hideBcastID: false,
   soundGift: null,
   soundBars: null,
   soundBlock: null
@@ -1386,6 +1387,7 @@ function settingsToCookie() {
     hideBlocks: settings.hideSuper,
     hideBroadcasterName: settings.hideBroadcasterName,
     hideStreambars: settings.hideStreamBars,
+    hideBcastID: settings.hideBcastID,
     feedNoPics: settings.feedNoPics,
     soundGift: settings.soundGift != null ? settings.soundGift.filename : null,
     soundBars: settings.soundBars != null ? settings.soundBars.filename : null,
@@ -1464,6 +1466,8 @@ function adjustLayout() {
   else $("div.input.tipso_style > input").removeClass("blurBroadcasterName");
   if (settings.hideStreamBars) $("#streamBars").addClass("blurStreamBars");
   else $("#streamBars").removeClass("blurStreamBars");
+  if (settings.hideBcastID) $("#bcastID").css("display", "none");
+  else $("#bcastID").css("display", "block");
   if (settings.hideSuper) $("#chat").addClass("nosuper");
   else $("#chat").removeClass("nosuper");
   if (settings.feedNoPics) $("#feed").addClass("nopics");
@@ -2845,6 +2849,8 @@ YouNowPlayer.prototype.disconnected = function() {
   $("#connect").html(this.language["disconnected"]);
   $("#streamerInfo").html("");
   $("#top").html("");
+  $("#bcastID > pre").html("");
+  $("#bcastID").css("display", "none");
   this.isConnected = false
 };
 YouNowPlayer.prototype.streamerData = {};
@@ -2861,6 +2867,8 @@ YouNowPlayer.prototype.connected = function(streamerData) {
   for (var i in streamerData.comments) {
     this.addChatMessage(streamerData.comments[i], undefined, true)
   }
+  $("#bcastID > pre").html(this.streamerData.broadcastId);
+  $("#bcastID").css("display", settings.hideBcastID ? "none" : "block");
   $("#linkButton").siblings(".popup").find("p > span").text($("#streamerID").val());
   $("#linkButton").siblings(".popup").find("textarea").text("http://y.drch.cf/?s=" + $("#streamerID").val());
   if (settings.showGuests) this.prepareGuestLoad(true);
