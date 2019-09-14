@@ -1719,6 +1719,11 @@ div.input.tipso_style>input.blurBroadcasterName {
   text-shadow: 0 0 10px rgba(255,255,255,0.5);
 }
 
+#streamBars.blurStreamBars {
+  color: transparent;
+  text-shadow: 0 0 10px rgba(170, 170, 170, 0.5)
+}
+
 #chat.noavatars>ul li>span,
 iframe {
   width: 100%
