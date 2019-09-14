@@ -1764,17 +1764,17 @@ input[type=button].active {
 }
 
 #barsHuman #viewersTotal {
-  background-image: url('../icons/eye_sigma.svg?aa');
+  background-image: url('https://drch.cf/icons/eye_sigma.svg?aa');
   padding-left: 26px
 }
 
 #barsHuman #numShares {
-  background-image: url('../icons/share.svg?aa');
+  background-image: url('https://drch.cf/icons/share.svg?aa');
   padding-left: 22px
 }
 
 #barsHuman #viewersLoggedin {
-  background-image: url('../icons/eye_profile.svg?aa');
+  background-image: url('https://drch.cf/icons/eye_profile.svg?aa');
   padding-left: 27px
 }
 
@@ -1908,7 +1908,7 @@ input[type=button].active {
 
 #trend_menu span.viewers_icon {
   display: inline-block;
-  background: url('../icons/eye.svg') no-repeat 0 0;
+  background: url('https://drch.cf/icons/eye.svg') no-repeat 0 0;
   background-size: 100% auto;
   width: 20px;
   height: 20px
@@ -1969,7 +1969,7 @@ input[type=button].active {
 
 #totalRestreams {
   display: inline-block;
-  background: url('../icons/eye.svg') 0 50% no-repeat;
+  background: url('https://drch.cf/icons/eye.svg') 0 50% no-repeat;
   background-size: 15px 15px;
   padding-left: 20px
 }
@@ -2043,7 +2043,7 @@ a#restreamFaq {
 }
 
 #restreamList li a .viewers {
-  background: url('../icons/eye.svg') 0 50% no-repeat;
+  background: url('https://drch.cf/icons/eye.svg') 0 50% no-repeat;
   background-size: 20px 20px;
   padding-left: 25px
 }
@@ -2202,50 +2202,50 @@ i#earningsFaq span {
 }
 
 #streamBar .item.eye {
-  background-image: url('../icons/eye.svg')
+  background-image: url('https://drch.cf/icons/eye.svg')
 }
 
 #streamBar .item.seeding {
   width: 3px;
-  background-image: url(../icons/seeding.svg);
+  background-image: url(https://drch.cf/icons/seeding.svg);
   height: 27px;
   background-size: 29px 29px
 }
 
 #streamBar .item.ban {
-  background-image: url('../icons/ban.svg')
+  background-image: url('https://drch.cf/icons/ban.svg')
 }
 
 #streamBar .item.halfban {
-  background-image: url('../icons/halfban.svg')
+  background-image: url('https://drch.cf/icons/halfban.svg')
 }
 
 #streamBar .item.droppedframes {
-  background-image: url('../icons/droppedframes.svg')
+  background-image: url('https://drch.cf/icons/droppedframes.svg')
 }
 
 #streamBar .item.clock {
-  background-image: url('../icons/clock.svg')
+  background-image: url('https://drch.cf/icons/clock.svg')
 }
 
 #streamBar .item.guest {
-  background-image: url('../icons/guest.svg')
+  background-image: url('https://drch.cf/icons/guest.svg')
 }
 
 #streamBar .item.lowlvl {
-  background-image: url('../icons/lowlvl.svg')
+  background-image: url('https://drch.cf/icons/lowlvl.svg')
 }
 
 #streamBar .item.thumbsup {
-  background-image: url('../icons/thumbsup.svg')
+  background-image: url('https://drch.cf/icons/thumbsup.svg')
 }
 
 #streamBar .item.camera {
-  background-image: url('../icons/camera.svg')
+  background-image: url('https://drch.cf/icons/camera.svg')
 }
 
 #streamBar .item.money {
-  background-image: url('../icons/money.svg')
+  background-image: url('https://drch.cf/icons/money.svg')
 }
 
 #switcher .logo {
