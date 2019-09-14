@@ -2083,7 +2083,19 @@ function getStreamerStatus() {
       } else {
         streamerOnline = true;
         stats.subonly = json.chatMode != 0;
+        // Fuckers managed to change chat filter levels without modifying the data returned by their
+        // own API.
+        // Fix that up manually.
+        // Nowadays, the lower chat filter level (previously 5) maps to level 2, while the higher chat
+        // filter level (formerly 10) maps to level 5.
+        // Other values are passed-through as-are.
         stats.lowlevel = json.minChatLevel;
+        if (stats.lowlevel == 5) {
+          stats.lowlevel = 2;
+        }
+        else if (stats.lowlevel == 10) {
+          stats.lowlevel = 5;
+        }
         stats.mods = !!json.broadcastMods ? JSON.parse(json.broadcastMods).length : 0;
         stats.viewersLoggedin = json.lviewers;
         stats.viewersTotal = json.viewsWithThreshold;
@@ -3203,7 +3215,7 @@ YouNowPlayer.prototype.updateInfo = function() {
   }
   document.title = "▶ " + (this.duration < 3600 ? "0:" + time : time).substring(0, (this.duration < 3600 ? "0:" + time : time).lastIndexOf(":")) + "h" + (this.streamerData.isPartner && stats.monitored ? " | $" + (2.6 * stats.subs + stats.est).toFormat(2, ",", ".") : "");
   if (stats.subonly) $("#streamLowlevel").html("sub-only").css("color", "#E70B0B");
-  else if (stats.lowlevel > 0) $("#streamLowlevel").html(stats.lowlevel).css("color", stats.lowlevel <= 5 ? "#EFDE59" : "#E70B0B");
+  else if (stats.lowlevel > 0) $("#streamLowlevel").html(stats.lowlevel).css("color", stats.lowlevel <= 2 ? "#EFDE59" : "#E70B0B");
   else $("#streamLowlevel").html("0").css("color", "#D8FFD5");
   if (typeof this.streamerData.subonly !== "undefined" && (this.streamerData.subonly != stats.subonly || this.streamerData.lowlevel != stats.lowlevel)) {
     var msg;
