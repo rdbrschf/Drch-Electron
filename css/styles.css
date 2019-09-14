@@ -1714,6 +1714,11 @@ legend {
   display: none
 }
 
+div.input.tipso_style>input.blurBroadcasterName {
+  color: transparent;
+  text-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
 #chat.noavatars>ul li>span,
 iframe {
   width: 100%

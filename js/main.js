@@ -1362,6 +1362,7 @@ var settings = {
   hideSuper: false,
   hideTimestamps: false,
   hideBlocks: false,
+  hideBroadcasterName: true,
   soundGift: null,
   soundBars: null,
   soundBlock: null
@@ -1382,6 +1383,7 @@ function settingsToCookie() {
     hideSuper: settings.hideSuper,
     hideTimestamps: settings.hideTimestamps,
     hideBlocks: settings.hideSuper,
+    hideBroadcasterName: settings.hideBroadcasterName,
     feedNoPics: settings.feedNoPics,
     soundGift: settings.soundGift != null ? settings.soundGift.filename : null,
     soundBars: settings.soundBars != null ? settings.soundBars.filename : null,
@@ -1456,6 +1458,8 @@ function adjustLayout() {
   else $("#chat").removeClass("nogifts");
   if (settings.hideBlocks) $("#chat").addClass("noblocks");
   else $("#chat").removeClass("noblocks");
+  if (settings.hideBroadcasterName) $("div.input.tipso_style > input").addClass("blurBroadcasterName");
+  else $("div.input.tipso_style > input").removeClass("blurBroadcasterName");
   if (settings.hideSuper) $("#chat").addClass("nosuper");
   else $("#chat").removeClass("nosuper");
   if (settings.feedNoPics) $("#feed").addClass("nopics");
@@ -1874,7 +1878,7 @@ $(document).ready(function() {
   for (var i in sounds) {
     $("#settingsBtn").siblings(".popup").find("select").append('<option value="' + i + '">' + sounds[i] + "</option>")
   }
-  $("#showChat, #showBarCounter, #showGiftList, #showBlocklist, #showGuests").attr("checked", "checked");
+  $("#showChat, #showBarCounter, #showGiftList, #showBlocklist, #showGuests, #hideBroadcasterName").attr("checked", "checked");
   $("#feedPosL").prop("checked", true);
   if (typeof $.cookie("layout") !== "undefined") {
     try {
