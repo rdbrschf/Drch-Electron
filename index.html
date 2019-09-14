@@ -60,6 +60,13 @@
 <br style="clear:both">
 <input type="checkbox" id="showGuests" />
 <label for="showGuests">Gäste</label>
+<input type="checkbox" id="showBroadcasterName" />
+<label for="showBroadcasterName">Broadcastername</label>
+<br style="clear:both">
+<input type="checkbox" id="showStreamBars" />
+<label for="showStreamBars">Einnahmen</label>
+<input type="checkbox" id="showBcastID" />
+<label for="showBcastID">Broadcast-ID</label>
 </fieldset>
 <fieldset>
 <legend>Im Chat ausblenden</legend>
@@ -74,14 +81,6 @@
 <label for="hideSuper">Super Messages</label>
 <input type="checkbox" id="hideBlocks" />
 <label for="hideBlocks">Blocks/Mutes</label>
-<br style="clear:both">
-<input type="checkbox" id="hideBroadcasterName" />
-<label for="hideBroadcasterName">Broadcastername</label>
-<input type="checkbox" id="hideStreamBars" />
-<label for="hideStreamBars">Einnahmen</label>
-<br style="clear:both">
-<input type="checkbox" id="hideBcastID" />
-<label for="hideBcastID">Broadcast-ID</label>
 </fieldset>
 <fieldset>
 <legend>Sound bei Geschenken</legend>
@@ -129,9 +128,11 @@ Derzeit laufen keine Restreams
 Drache schaut
 <a></a>
 </div>
-<div id="bcastID" class="btn_box osd" style="margin-left: 8px; padding-top: 7px; display:none;">
+<div id="bcastID" class="btn_box osd" style="margin-left: 8px; display:none;">
+<div id="bcastID-data" style="display:none;">
 Broadcast-ID
 <pre></pre>
+</div>
 </div>
 <div class="right">
 <div class="btn_box" style="display:none; padding:1px; margin-right:10px">

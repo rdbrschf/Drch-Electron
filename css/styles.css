@@ -1948,14 +1948,14 @@ input[type=button].active {
   font-weight: bold
 }
 
-#bcastID.osd {
+#bcastID-data {
   margin-top: -5px;
   padding-top: 0;
   font-style: italic;
   font-size: 16px;
 }
 
-#bcastID pre {
+#bcastID-data > pre {
   font-style: normal;
   font-weight: bold;
 }

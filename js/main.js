@@ -1356,15 +1356,15 @@ var settings = {
   showBarCounter: true,
   showGiftList: true,
   showOSD: false,
+  showBroadcasterName: false,
+  showStreamBars: false,
+  showBcastID: true,
   feedNoPics: false,
   hideAvatars: false,
   hideGifts: false,
   hideSuper: false,
   hideTimestamps: false,
   hideBlocks: false,
-  hideBroadcasterName: true,
-  hideStreamBars: true,
-  hideBcastID: false,
   soundGift: null,
   soundBars: null,
   soundBlock: null
@@ -1380,14 +1380,14 @@ function settingsToCookie() {
     showBarCounter: settings.showBarCounter,
     showGiftList: settings.showGiftList,
     showOSD: settings.showOSD,
+    showBroadcasterName: settings.showBroadcasterName,
+    showStreamBars: settings.showStreamBars,
+    showBcastID: settings.showBcastID,
     hideAvatars: settings.hideAvatars,
     hideGifts: settings.hideGifts,
     hideSuper: settings.hideSuper,
     hideTimestamps: settings.hideTimestamps,
     hideBlocks: settings.hideSuper,
-    hideBroadcasterName: settings.hideBroadcasterName,
-    hideStreambars: settings.hideStreamBars,
-    hideBcastID: settings.hideBcastID,
     feedNoPics: settings.feedNoPics,
     soundGift: settings.soundGift != null ? settings.soundGift.filename : null,
     soundBars: settings.soundBars != null ? settings.soundBars.filename : null,
@@ -1454,6 +1454,13 @@ function adjustLayout() {
     $("#blockBar").css("display", "none");
     $("#streamView").css("height", "calc(100% - 35px)")
   }
+  if (settings.showBroadcasterName) $("div.input.tipso_style > input").removeClass("blurBroadcasterName");
+  else $("div.input.tipso_style > input").addClass("blurBroadcasterName");
+  if (settings.showStreamBars) $("#streamBars").removeClass("blurStreamBars");
+  else $("#streamBars").addClass("blurStreamBars");
+  if (settings.showBcastID) $("#bcastID").css("display", "block");
+  else $("#bcastID").css("display", "none");
+
   if (settings.hideAvatars) $("#chat").addClass("noavatars");
   else $("#chat").removeClass("noavatars");
   if (settings.hideTimestamps) $("#chat").addClass("notimestamps");
@@ -1462,12 +1469,6 @@ function adjustLayout() {
   else $("#chat").removeClass("nogifts");
   if (settings.hideBlocks) $("#chat").addClass("noblocks");
   else $("#chat").removeClass("noblocks");
-  if (settings.hideBroadcasterName) $("div.input.tipso_style > input").addClass("blurBroadcasterName");
-  else $("div.input.tipso_style > input").removeClass("blurBroadcasterName");
-  if (settings.hideStreamBars) $("#streamBars").addClass("blurStreamBars");
-  else $("#streamBars").removeClass("blurStreamBars");
-  if (settings.hideBcastID) $("#bcastID").css("display", "none");
-  else $("#bcastID").css("display", "block");
   if (settings.hideSuper) $("#chat").addClass("nosuper");
   else $("#chat").removeClass("nosuper");
   if (settings.feedNoPics) $("#feed").addClass("nopics");
@@ -1886,7 +1887,7 @@ $(document).ready(function() {
   for (var i in sounds) {
     $("#settingsBtn").siblings(".popup").find("select").append('<option value="' + i + '">' + sounds[i] + "</option>")
   }
-  $("#showChat, #showBarCounter, #showGiftList, #showBlocklist, #showGuests, #hideBroadcasterName, #hideStreamBars").attr("checked", "checked");
+  $("#showChat, #showBarCounter, #showGiftList, #showBlocklist, #showGuests, #showBcastID").attr("checked", "checked");
   $("#feedPosL").prop("checked", true);
   if (typeof $.cookie("layout") !== "undefined") {
     try {
@@ -2849,8 +2850,8 @@ YouNowPlayer.prototype.disconnected = function() {
   $("#connect").html(this.language["disconnected"]);
   $("#streamerInfo").html("");
   $("#top").html("");
-  $("#bcastID > pre").html("");
-  $("#bcastID").css("display", "none");
+  $("#bcastID-data > pre").html("");
+  $("#bcastID-data").css("display", "none");
   this.isConnected = false
 };
 YouNowPlayer.prototype.streamerData = {};
@@ -2867,8 +2868,8 @@ YouNowPlayer.prototype.connected = function(streamerData) {
   for (var i in streamerData.comments) {
     this.addChatMessage(streamerData.comments[i], undefined, true)
   }
-  $("#bcastID > pre").html(this.streamerData.broadcastId);
-  $("#bcastID").css("display", settings.hideBcastID ? "none" : "block");
+  $("#bcastID-data > pre").html(this.streamerData.broadcastId);
+  $("#bcastID-data").css("display", "block");
   $("#linkButton").siblings(".popup").find("p > span").text($("#streamerID").val());
   $("#linkButton").siblings(".popup").find("textarea").text("http://y.drch.cf/?s=" + $("#streamerID").val());
   if (settings.showGuests) this.prepareGuestLoad(true);
