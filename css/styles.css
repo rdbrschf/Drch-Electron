@@ -1732,8 +1732,11 @@ div.input.tipso_style>button#connect.blurBroadcasterName {
 }
 
 #streamBars.blurStreamBars {
-  color: transparent;
-  text-shadow: 0 0 8px rgba(170, 170, 170, 1.0)
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
 }
 
 #chat.noavatars>ul li>span,
