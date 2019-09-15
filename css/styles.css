@@ -1719,8 +1719,16 @@ div.input.tipso_style>input {
 }
 
 div.input.tipso_style>input.blurBroadcasterName {
-  color: transparent;
-  text-shadow: 0 0 8px rgba(255, 255, 255, 1.0);
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+  width: calc(146px - 5px);
+}
+
+div.input.tipso_style>button#connect.blurBroadcasterName {
+  margin-left: 5px;
 }
 
 #streamBars.blurStreamBars {
