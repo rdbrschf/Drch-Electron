@@ -1714,6 +1714,10 @@ legend {
   display: none
 }
 
+div.input.tipso_style>input {
+  width: 146px;
+}
+
 div.input.tipso_style>input.blurBroadcasterName {
   color: transparent;
   text-shadow: 0 0 8px rgba(255, 255, 255, 1.0);
