@@ -1724,11 +1724,8 @@ div.input.tipso_style>input.blurBroadcasterName {
 }
 
 #streamBars.blurStreamBars {
-  -webkit-filter: blur(5px);
-  -moz-filter: blur(5px);
-  -o-filter: blur(5px);
-  -ms-filter: blur(5px);
-  filter: blur(5px);
+  color: transparent;
+  text-shadow: 0 0 8px rgba(170, 170, 170, 1.0)
 }
 
 #chat.noavatars>ul li>span,
