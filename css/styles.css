@@ -1343,6 +1343,11 @@ a#tweetButton{
 #chat.noblocks>ul li.ban,#chat.noblocks>ul li.halfban,#chat.nogifts>ul li.gift,#chat.nosuper>ul li.super,.layout-hide,.ui-layout-resizer-sliding .ui-layout-toggler{
     display:none
 }
+
+div.input>input#streamerID {
+  width: 146px;
+}
+
 #chat.noavatars>ul li>span,iframe{
     width:100%
 }
