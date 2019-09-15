@@ -1753,6 +1753,27 @@ div.input.tipso_style>input.blurBroadcasterName {
   text-shadow: 0 0 8px rgba(255, 255, 255, 1.0);
 }
 
+#streamBars.blurStreamBars::-moz-selection {
+  color: transparent;
+  /* Check first comment for alpha value 0.996 for an explanation. */
+  background-color: rgba(0, 92, 204, 0.996);
+  text-shadow: 0 0 8px rgba(170, 170, 170, 1.0)
+}
+
+#streamBars.blurStreamBars::-webkit-selection {
+  color: transparent;
+  /* Check first comment for alpha value 0.996 for an explanation. */
+  background-color: rgba(0, 92, 204, 0.996);
+  text-shadow: 0 0 8px rgba(170, 170, 170, 1.0)
+}
+
+#streamBars.blurStreamBars::selection {
+  color: transparent;
+  /* Check first comment for alpha value 0.996 for an explanation. */
+  background-color: rgba(0, 92, 204, 0.996);
+  text-shadow: 0 0 8px rgba(170, 170, 170, 1.0)
+}
+
 #streamBars.blurStreamBars {
   color: transparent;
   text-shadow: 0 0 8px rgba(170, 170, 170, 1.0)
