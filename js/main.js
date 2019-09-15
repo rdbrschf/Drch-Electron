@@ -1454,14 +1454,8 @@ function adjustLayout() {
     $("#blockBar").css("display", "none");
     $("#streamView").css("height", "calc(100% - 35px)")
   }
-  if (settings.showBroadcasterName) {
-    $("div.input.tipso_style > input").removeClass("blurBroadcasterName");
-    $("div.input.tipso_style > button#connect").removeClass("blurBroadcasterName");
-  }
-  else {
-    $("div.input.tipso_style > input").addClass("blurBroadcasterName");
-    $("div.input.tipso_style > button#connect").addClass("blurBroadcasterName");
-  }
+  if (settings.showBroadcasterName) $("div.input.tipso_style > input").removeClass("blurBroadcasterName");
+  else $("div.input.tipso_style > input").addClass("blurBroadcasterName");
   if (settings.showStreamBars) $("#streamBars").removeClass("blurStreamBars");
   else $("#streamBars").addClass("blurStreamBars");
   if (settings.showBcastID) $("#bcastID").css("display", "block");
