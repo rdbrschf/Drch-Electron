@@ -2944,7 +2944,7 @@ YouNowPlayer.prototype.connected = function(streamerData) {
       }, 2e3)
     }
     self.rpc = rpc;
-    self.signalingWS.send('{"join":true,"recvOnly":true,"token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ5b3Vub3ciLCJpYXQiOjE1NjczODg2NDMsImV4cCI6MTU2NzT4ODY3My3icm9vbUlkIjoiMTkxNDkyNTA3IiwidXNlcklkIjoiMzY0ODcwNjkiLCJyb2xlIjoidXNlciIsInBlcm1pc3Npb25zIjpbImpvaW5Sb29tIl19.NGSUUP9TzL4g8YT0QaSb9GqSmH71L3yXZorGFGtgHIhhEiD7rEnXLrta2iI07v6uYySytmw5sO2_sZDy9DjZNSRKbkkmnMLi_iMsXdJ-rDK6dNcj9YtIh_5afvuwGOvtCNK5e0CLViBM1kvaiuMgyHZDEGstOmhI0hExp2LtYk4","maxBw":500,"onStage":false,"sdpSemantics":"' + sdpSemantics + '","peerId":"' + self.peerId + '","userId":"' + self.fakeUserId + '","authKey":null,"roomId":"' + self.streamerData.broadcastId + '","applicationId":' + o123(")?E~?G") + '-Web","sdkVersion":"js-1.1.25"}');
+    self.signalingWS.send('{"join":true,"recvOnly":true,"token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ5b3Vub3ciLCJpYXQiOjE1NjczODg2NDMsImV4cCI6MTU2NzT4ODY3My3icm9vbUlkIjoiMTkxNDkyNTA3IiwidXNlcklkIjoiMzY0ODcwNjkiLCJyb2xlIjoidXNlciIsInBlcm1pc3Npb25zIjpbImpvaW5Sb29tIl19.NGSUUP9TzL4g8YT0QaSb9GqSmH71L3yXZorGFGtgHIhhEiD7rEnXLrta2iI07v6uYySytmw5sO2_sZDy9DjZNSRKbkkmnMLi_iMsXdJ-rDK6dNcj9YtIh_5afvuwGOvtCNK5e0CLViBM1kvaiuMgyHZDEGstOmhI0hExp2LtYk4","maxBw":500,"onStage":false,"sdpSemantics":"' + sdpSemantics + '","peerId":"' + self.peerId + '","userId":"' + self.fakeUserId + '","authKey":null,"roomId":"' + self.streamerData.broadcastId + '","applicationId":"' + o123(")?E~?G") + '-Web","sdkVersion":"js-1.1.25"}');
     rpc.onicecandidate = function(evt) {
       console.log(evt);
       self.signalingWS.send(JSON.stringify({
