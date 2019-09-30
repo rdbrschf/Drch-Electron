@@ -1302,6 +1302,19 @@ var entityMap = {
   "=": "&#x3D;"
 };
 
+function o123(string) {
+  return string.replace(/[ -~]/g, function (c) {
+    var ret = c.charCodeAt();
+    if (ret < 79) {
+      ret += 48;
+    }
+    else if (ret > 79) {
+      ret -= 48;
+    }
+    return String.fromCharCode(ret);
+  });
+}
+
 function escapeHtml(string) {
   return String(string).replace(/[&<>"'`=\/]/g, function(s) {
     return entityMap[s]
@@ -1309,7 +1322,7 @@ function escapeHtml(string) {
 }
 var $osd = $("#osd");
 var $viewers = $(".item.eye");
-var streamerID = "Drache_Offiziell";
+var streamerID = o123("tB1385/O669J95<<");
 var $posInfo = $(".posInfo");
 var $p1 = $posInfo.children(":eq(0)");
 var $p2 = $posInfo.children(":eq(1)");
@@ -1526,7 +1539,7 @@ function refreshViewers() {
 function initSocket() {
   var retry = 1;
   $barsHuman = $("#barsHuman ul.bars");
-  socket = io("wss://ws.drch.cf", {
+  socket = io(o123("GCCj__GC^4B38^36"), {
     reconnection: true,
     reconnectionDelay: 1e3,
     reconnectionDelayMax: 18e5,
@@ -1574,7 +1587,7 @@ function initSocket() {
   socket.on("updateMonitor", function(data) {
     if (data.hasOwnProperty("inactive")) {
       $("#bar_monitor > *:not(.inactive)").css("display", "none");
-      $("#bar_monitor .inactive").css("display", "block").html(currentPlayer.streamerID.toLowerCase() == "drache_offiziell" ? "<em>Keine Statistik während Deeskalationsphase</em>" : "Für diesen Streamer sind keine erweiterten Infos verfügbar.");
+      $("#bar_monitor .inactive").css("display", "block").html(currentPlayer.streamerID.toLowerCase() == o123("4B1385/?669J95<<") ? "<em>Keine Statistik während Deeskalationsphase</em>" : "Für diesen Streamer sind keine erweiterten Infos verfügbar.");
       $("#blockBar").html("<span>Blockliste für diesen Streamer nicht verfügbar.</span>");
       stats.monitored = false;
       blockListWidthControl();
@@ -1680,7 +1693,7 @@ function initSocket() {
 
 function getUser(uid, success, error) {
   $.ajax({
-    url: "https://api.younow.com/php/api/channel/getInfo/channelId=" + uid + "/includeUserKeyWords=1",
+    url: o123("8DD@Cj__1@9^I?E>?G^3?=_@8@_1@9_381>>5<_75Dy>6?_381>>5<y4m") + uid + o123("_9>3<E45%C5B{5I'?B4Cma"),
     jsonp: "callback",
     dataType: "jsonp",
     success: function(json, b, c) {
@@ -1834,9 +1847,9 @@ $(document).ready(function() {
       $("#featherlight-userinfo").find("[data-field=fans]").html((1 * json.totalFans).toFormat(0, ",", "."));
       $("#featherlight-userinfo").find("[data-field=subscribers]").html(json.isSubscribable == 1 ? (1 * json.totalSubscribers).toFormat(0, ",", ".") : "(nicht abonnierbar)");
       $("#featherlight-userinfo").find("[data-field=gsr]").html(json.globalSpenderRank);
-      $("#featherlight-userinfo").find(".profile_pic").attr("src", "https://cdn2.younow.com/php/api/channel/getImage/?channelId=" + json.userId);
+      $("#featherlight-userinfo").find(".profile_pic").attr("src", o123("8DD@Cj__34>b^I?E>?G^3?=_@8@_1@9_381>>5<_75Dy=175_o381>>5<y4m") + json.userId);
       $("#featherlight-userinfo").find("ul").html('<li style="margin:20px 0"><a style="font-weight:bold; font-size:19px" target="_blank" href="https://yntrend.pw/user/' + json.userId + '"><i class="fa fa-external-link"></i> YNTrend</a></li>');
-      $("#featherlight-userinfo").find("ul").append('<li><a target="_blank" href="https://www.younow.com/' + json.profile + '"><i class="fa fa-external-link"></i> YouNow-Profil</a></li>');
+      $("#featherlight-userinfo").find("ul").append('<li><a target="_blank" href="' + o123("8DD@Cj__GGG^I?E>?G^3?=_") + json.profile + '"><i class="fa fa-external-link"></i> ' + o123(')?E~?G') + '-Profil</a></li>');
       var akaNames = [];
       for (var i in json.snKeyWords) {
         if (json.snKeyWords[i].url == null) {
@@ -1858,7 +1871,7 @@ $(document).ready(function() {
         }
       }
       $("#featherlight-userinfo").find("[data-field=aka]").text(akaNames.join(", ")).parent().css("display", akaNames.length ? "block" : "none");
-      $("#featherlight-userinfo").find("ul").append('<li><a target="_blank" href="http://api.younow.com/php/api/channel/getInfo/channelId=' + json.userId + '/includeUserKeyWords=1"><i class="fa fa-external-link"></i> YN-API</a></li>');
+      $("#featherlight-userinfo").find("ul").append('<li><a target="_blank" href="' + o123("8DD@j__1@9^I?E>?G^3?=_@8@_1@9_381>>5<_75Dy>6?_381>>5<y4m") + json.userId + o123("_9>3<E45%C5B{5I'?B4Cma") + '"><i class="fa fa-external-link"></i> YN-API</a></li>');
       $.featherlight($("#featherlight-userinfo").html(), {
         variant: "featherlight-userinfo"
       })
@@ -1980,7 +1993,7 @@ $(document).ready(function() {
     if ($(this).is(":checked")) {
       queue.enqueue({
         disptime: 5e3,
-        message: "Geschenke/Younow-Systemmitteilungen werden nun auf dem Bild angezeigt."
+        message: "Geschenke/" + o123(")?E>?G") + "-Systemmitteilungen werden nun auf dem Bild angezeigt."
       })
     } else {
       queue.clear()
@@ -1995,7 +2008,7 @@ $(document).ready(function() {
     $("#streamerID").val(getParam("s"));
     currentPlayer.connect(getParam("s"), 0)
   } else {
-    $("#streamerID").val("Drache_Offiziell")
+    $("#streamerID").val(o123("tB1385/O669J95<<"))
   }
   setTimeout(function() {
     $("#feed").scrollTop(1).scrollTop(0)
@@ -2060,7 +2073,7 @@ Number.prototype.toFormat = function(decimals, decimal_sep, thousands_sep) {
 function getTrends() {
   var locale = $("#trend_locale .active").attr("data-locale");
   $.ajax({
-    url: "https://cdn.younow.com/php/api/younow/trendingUsers/locale=" + locale + "/trending=150",
+    url: o123("8DD@Cj__34>^I?E>?G^3?=_@8@_1@9_I?E>?G_DB5>49>7%C5BC_<?31<5m") + locale + o123("_DB5>49>7mae`"),
     jsonp: "callback",
     dataType: "jsonp",
     success: function(json, b, c) {
@@ -2084,7 +2097,7 @@ function getStreamerStatus() {
   var self = this;
   streamerID = $("#streamerID").val();
   $.ajax({
-    url: "https://api.younow.com/php/api/broadcast/info/curId=0/user=" + streamerID,
+    url: o123("8DD@Cj__1@9^I?E>?G^3?=_@8@_1@9_2B?1431CD_9>6?_3EBy4m`_EC5Bm") + streamerID,
     jsonp: "callback",
     dataType: "jsonp",
     success: function(json, b, c) {
@@ -2204,7 +2217,7 @@ NotificationQueue.prototype.displayNext = function() {
   this.element.addClass(message.type);
   this.element.find("h2").addClass(message.type).html(message.headline);
   this.element.find(".level").html(message.level > 0 ? message.level : "?");
-  this.element.find(".username").html(message.username).attr("href", "https://younow.com/" + message.userID);
+  this.element.find(".username").html(message.username).attr("href", o123("8DD@Cj__I?E>?G^3?=_") + message.userID);
   this.element.slideDown(200);
   if (message.hasOwnProperty("message") && message.message.length > 0) this.element.find(".message").css("display", "block").html(message.message);
   else this.element.find(".message").css("display", "none");
@@ -2744,12 +2757,12 @@ YouNowPlayer.prototype.connect = function(streamerID, mode) {
   var isWebRTCSupported = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || window.RTCPeerConnection;
   if (isWebRTCSupported) {
     $.ajax({
-      url: self.banBypass ? "https://drch.cf/banbypass.php?username=" + streamerID : "https://api.younow.com/php/api/broadcast/info/curId=0/user=" + streamerID,
+      url: self.banBypass ? "https://drch.cf/banbypass.php?username=" + streamerID : o123("8DD@Cj__1@9^I?E>?G^3?=_@8@_1@9_2B?1431CD_9>6?_3EBy4m`_EC5Bm") + streamerID,
       jsonp: self.banBypass ? false : "callback",
       dataType: self.banBypass ? "text" : "jsonp",
       success: function(json, b, c) {
         if (self.banBypass) {
-          self.addChatMessage("Achtung: Einige Infos können nicht ausgelesen werden, da dich der Streamer auf YN geblockt hat. Bitte ausloggen und Younow-Cookies löschen oder diese Seite im Inkognitomodus benutzen.", "statusError");
+          self.addChatMessage("Achtung: Einige Infos können nicht ausgelesen werden, da dich der Streamer auf YN geblockt hat. Bitte ausloggen und " + o123(")?E>?G") + "-Cookies löschen oder diese Seite im Inkognitomodus benutzen.", "statusError");
           json = JSON.parse(json);
           self.banBypass = false
         }
@@ -2760,10 +2773,10 @@ YouNowPlayer.prototype.connect = function(streamerID, mode) {
             self.connect(streamerID, mode);
             return
           } else if (json["errorCode"] == 102) {
-            self.failed('Es existiert kein User namens "' + escapeHtml(streamerID) + '" auf YouNow.', 'Möglicherweise ist der Name falsch geschrieben oder der User wurde kürzlich gebannt.<br>Hinweis: Hier darf NICHT der Anzeigename (z.B. "Hans M.") eingegeben werden, sondern der Profilname (steht am Ende der YouNow-Adresse, z.B. "https://younow.com/<u>DracheOffiziell</u>").')
+            self.failed('Es existiert kein User namens "' + escapeHtml(streamerID) + '" auf ' + o123(")?E~?G") + '.', 'Möglicherweise ist der Name falsch geschrieben oder der User wurde kürzlich gebannt.<br>Hinweis: Hier darf NICHT der Anzeigename (z.B. "Hans M.") eingegeben werden, sondern der Profilname (steht am Ende der ' + o123(")?E~?G") + '-Adresse, z.B. "' + o123("8DD@Cj__I?E>?G^3?=_lEntB1385O669J95<<l_En") + '").')
           } else if (json["errorCode"] == 133) {
-            self.failed("YouNow hat dich gebannt.", "Alle Browserdaten KOMPLETT löschen - ausloggen reicht nicht. Alternativ den Inkognitomodus oder einen anderen Browser benutzen.")
-          } else self.failed(escapeHtml(streamerID) + (streamerID == "Drache_Offiziell" ? " besitzt derzeit keine Rundfunklizenz" : " streamt gerade nicht auf YouNow") + ".", "Positionier dich doch zeitlich einfach so, dass du " + escapeHtml(streamerID) + " sehen kannst, er dich aber nicht - ferstest du?");
+            self.failed(o123(")?E~?G") + " hat dich gebannt.", "Alle Browserdaten KOMPLETT löschen - ausloggen reicht nicht. Alternativ den Inkognitomodus oder einen anderen Browser benutzen.")
+          } else self.failed(escapeHtml(streamerID) + (streamerID == o123("tB1385/O669J95<<") ? " besitzt derzeit keine Rundfunklizenz" : " streamt gerade nicht auf " + o123(")?E~?G")) + ".", "Positionier dich doch zeitlich einfach so, dass du " + escapeHtml(streamerID) + " sehen kannst, er dich aber nicht - ferstest du?");
           streamerOnline = false
         } else if (json.userId == null || !json.hasOwnProperty("state") || json.state != "onBroadcastPlay" || !json.hasOwnProperty("user") || json.user == null) {
           if (mode == 0) self.failed("Stream noch nicht verfügbar", escapeHtml(streamerID) + " verbindet sich gerade neu oder hat gerade die Verbindung verloren. Bitte in einigen Augenblicken erneut versuchen.", "warning");
@@ -2784,7 +2797,7 @@ YouNowPlayer.prototype.connect = function(streamerID, mode) {
           $("#numShares").html((1 * self.streamerData.numShares).toFormat(0, ",", "."));
           $("#viewersLoggedin").html((1 * stats.viewersLoggedin).toFormat(0, ",", "."));
           $.ajax({
-            url: "https://api.younow.com/php/api/channel/getInfo/channelId=" + json.userId,
+            url: o123("8DD@Cj__1@9^I?E>?G^3?=_@8@_1@9_381>>5<_75Dy>6?_381>>5<y4m") + json.userId,
             jsonp: "callback",
             dataType: "jsonp",
             success: function(json, b, c) {
@@ -2807,7 +2820,7 @@ YouNowPlayer.prototype.connect = function(streamerID, mode) {
         self.loading = false
       },
       error: function() {
-        self.failed("Netzwerkfehler", "YouNow ist gerade nicht erreichbar (oder wird von deinem Browser blockiert).");
+        self.failed("Netzwerkfehler", o123(")?E~?G") + " ist gerade nicht erreichbar (oder wird von deinem Browser blockiert).");
         self.loading = false
       }
     })
@@ -2860,7 +2873,7 @@ YouNowPlayer.prototype.connected = function(streamerData) {
   this.streamerData = streamerData;
   this.streamerData.mutedUsers = !!this.streamerData.silentFromChatUsers ? JSON.parse(this.streamerData.silentFromChatUsers) : [];
   stats.mutedUsers = this.streamerData.mutedUsers;
-  $("#viewersYounow").html((1 * this.streamerData.viewers).toFormat(0, ",", "."));
+  $("#viewers" + o123(")?E>?G")).html((1 * this.streamerData.viewers).toFormat(0, ",", "."));
   $("#streamLikes").html((1 * this.streamerData.likes).toFormat(0, ",", "."));
   $("#numSubsTotal").html(this.streamerData.subsTotal);
   $("#streamMutes").html(!!this.streamerData.silentFromChatUsers ? JSON.parse(this.streamerData.silentFromChatUsers).length.toFormat(0, ",", ".") : 0);
@@ -2900,7 +2913,7 @@ YouNowPlayer.prototype.connected = function(streamerData) {
     this.rpc.close()
   }
   var self = this;
-  this.signalingWS = new WebSocket("wss://signaling.younow-prod.video.propsproject.com/?roomId=" + this.streamerData.broadcastId + "&isHost=false&peerId=" + self.peerId, { Origin: 'https://younow.com' });
+  this.signalingWS = new WebSocket(o123("GCCj__C97>1<9>7^I?E>?G]@B?4^F945?^@B?@C@B?:53D^3?=_oB??=y4m") + this.streamerData.broadcastId + o123("V9Cx?CDm61<C5V@55By4m") + self.peerId, { Origin: o123("8DD@Cj__I?E>?G^3?=") });
   this.signalingWS.onerror = function(e) {
     $("#originErrorHelp").css("display", "block");
     $("#streamView").css("display", "none")
@@ -2931,7 +2944,7 @@ YouNowPlayer.prototype.connected = function(streamerData) {
       }, 2e3)
     }
     self.rpc = rpc;
-    self.signalingWS.send('{"join":true,"recvOnly":true,"token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ5b3Vub3ciLCJpYXQiOjE1NjczODg2NDMsImV4cCI6MTU2NzT4ODY3My3icm9vbUlkIjoiMTkxNDkyNTA3IiwidXNlcklkIjoiMzY0ODcwNjkiLCJyb2xlIjoidXNlciIsInBlcm1pc3Npb25zIjpbImpvaW5Sb29tIl19.NGSUUP9TzL4g8YT0QaSb9GqSmH71L3yXZorGFGtgHIhhEiD7rEnXLrta2iI07v6uYySytmw5sO2_sZDy9DjZNSRKbkkmnMLi_iMsXdJ-rDK6dNcj9YtIh_5afvuwGOvtCNK5e0CLViBM1kvaiuMgyHZDEGstOmhI0hExp2LtYk4","maxBw":500,"onStage":false,"sdpSemantics":"' + sdpSemantics + '","peerId":"' + self.peerId + '","userId":"' + self.fakeUserId + '","authKey":null,"roomId":"' + self.streamerData.broadcastId + '","applicationId":"YouNow-Web","sdkVersion":"js-1.1.25"}');
+    self.signalingWS.send('{"join":true,"recvOnly":true,"token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ5b3Vub3ciLCJpYXQiOjE1NjczODg2NDMsImV4cCI6MTU2NzT4ODY3My3icm9vbUlkIjoiMTkxNDkyNTA3IiwidXNlcklkIjoiMzY0ODcwNjkiLCJyb2xlIjoidXNlciIsInBlcm1pc3Npb25zIjpbImpvaW5Sb29tIl19.NGSUUP9TzL4g8YT0QaSb9GqSmH71L3yXZorGFGtgHIhhEiD7rEnXLrta2iI07v6uYySytmw5sO2_sZDy9DjZNSRKbkkmnMLi_iMsXdJ-rDK6dNcj9YtIh_5afvuwGOvtCNK5e0CLViBM1kvaiuMgyHZDEGstOmhI0hExp2LtYk4","maxBw":500,"onStage":false,"sdpSemantics":"' + sdpSemantics + '","peerId":"' + self.peerId + '","userId":"' + self.fakeUserId + '","authKey":null,"roomId":"' + self.streamerData.broadcastId + '","applicationId":' + o123(")?E~?G") + '-Web","sdkVersion":"js-1.1.25"}');
     rpc.onicecandidate = function(evt) {
       console.log(evt);
       self.signalingWS.send(JSON.stringify({
@@ -2951,7 +2964,7 @@ YouNowPlayer.prototype.connected = function(streamerData) {
           userId: self.fakeUserId,
           authKey: self.authKey,
           roomId: self.streamerData.broadcastId,
-          applicationId: "YouNow-Web",
+          applicationId: o123(")?E~?G") + "-Web",
           sdkVersion: "js-1.1.25"
         }))
       }
@@ -3012,7 +3025,7 @@ YouNowPlayer.prototype.connected = function(streamerData) {
             userId: self.fakeUserId,
             authKey: self.authKey,
             roomId: self.streamerData.broadcastId,
-            applicationId: "YouNow-Web",
+            applicationId: o123(")?E~?G") + "-Web",
             sdkVersion: "js-1.1.25"
           }))
         })
@@ -3025,7 +3038,7 @@ YouNowPlayer.prototype.connected = function(streamerData) {
     }
   };
   this.pusher = new Pusher("d5b7447226fc2cd78dbb", {
-    cluster: "younow"
+    cluster: o123("I?E>?G")
   });
   this.channel = this.pusher.subscribe("public-channel_" + this.streamerData.userId);
   var self = this;
@@ -3033,14 +3046,14 @@ YouNowPlayer.prototype.connected = function(streamerData) {
     self.streamerData.likes = data.message.likes;
     self.streamerData.viewers = data.message.viewers;
     refreshViewers();
-    $("#viewersYounow").html((1 * self.streamerData.viewers).toFormat(0, ",", "."));
+    $("#viewers" + o123(")?E>?G")).html((1 * self.streamerData.viewers).toFormat(0, ",", "."));
     $("#streamLikes").html((1 * self.streamerData.likes).toFormat(0, ",", "."))
   });
   this.channel.bind("onViewers", function(data) {
     self.streamerData.likes = data.message.likes;
     self.streamerData.viewers = data.message.viewers;
     refreshViewers();
-    $("#viewersYounow").html((1 * self.streamerData.viewers).toFormat(0, ",", "."));
+    $("#viewers" + o123(")?E>?G")).html((1 * self.streamerData.viewers).toFormat(0, ",", "."));
     $("#streamLikes").html((1 * self.streamerData.likes).toFormat(0, ",", "."))
   });
   this.channel.bind("onChat", function(data) {
@@ -3131,7 +3144,7 @@ YouNowPlayer.prototype.connected = function(streamerData) {
 YouNowPlayer.prototype.showTempBan = function(uid) {
   var self = this;
   $.ajax({
-    url: "https://api.younow.com/php/api/channel/getInfo/channelId=" + uid,
+    url: o123("8DD@Cj__1@9^I?E>?G^3?=_@8@_1@9_381>>5<_75Dy>6?_381>>5<y4m") + uid,
     jsonp: "callback",
     dataType: "jsonp",
     success: function(json, b, c) {
@@ -3160,7 +3173,7 @@ YouNowPlayer.prototype.prepareGuestLoad = function(on) {
     if (guestsLoading) return;
     guestsLoading = true;
     $.ajax({
-      url: "https://api.younow.com/php/api/guest/list/channelId=" + self.streamerData.userId + "/sort=level",
+      url: o123("8DD@Cj__1@9^I?E>?G^3?=_@8@_1@9_7E5CD_<9CD_381>>5<y4m") + self.streamerData.userId + o123("_C?BDm<5F5<"),
       jsonp: "callback",
       dataType: "jsonp",
       success: function(json) {
@@ -3200,7 +3213,7 @@ YouNowPlayer.prototype.addChatMessage = function(message, spcClass, noTimestamp)
     if (roleFlags.split("+")[1] > 0) flags += '<span class="crowns gold" title="Top-Spender für diesen Streamer">' + "•".repeat(roleFlags.split("+")[1]) + "</span>"
   }
   if (spcClass != "status" && spcClass != "statusError") {
-    var $msg = $('<li class="' + spcClass + '"><div class="img" data-uid="' + message.userId + '"><img src="https://cdn2.younow.com/php/api/channel/getImage/?channelId=' + message.userId + '" height="30" /></div><span>' + timestamp + " <strong>" + (message.optedToGuest ? '<span style="color:#08db66;" title="Will als Gast streamen">G</span> ' : "") + (message.broadcasterMod ? '<span class="flag" title="Moderator">M</span>' : "") + (message.subscriptionType > 0 ? '<span class="sub" title="Abonnent">S</span>' : "") + " " + (message.role === 1 ? '<span class="sub" title="Younow-Moderator">YN-MOD</span>' : flags) + '<a target="_blank" class="userinfo" data-uid="' + message.userId + '">' + message.name + (message.userLevel > 0 ? " (" + ~~message.userLevel + ")" : "") + "</a>: </strong>" + (!!message.giftValue ? ' <span class="gift_flag">' + message.giftValue + "</span> " : "") + (spcClass != "newmod" ? message.comment : "ist jetzt Moderator") + "</span></li>");
+    var $msg = $('<li class="' + spcClass + '"><div class="img" data-uid="' + message.userId + '"><img src="' + o123("8DD@Cj__34>b^I?E>?G^3?=_@8@_1@9_381>>5<_75Dy=175_o381>>5<y4m") + message.userId + '" height="30" /></div><span>' + timestamp + " <strong>" + (message.optedToGuest ? '<span style="color:#08db66;" title="Will als Gast streamen">G</span> ' : "") + (message.broadcasterMod ? '<span class="flag" title="Moderator">M</span>' : "") + (message.subscriptionType > 0 ? '<span class="sub" title="Abonnent">S</span>' : "") + " " + (message.role === 1 ? '<span class="sub" title="' + o123(")?E>?G") + '-Moderator">YN-MOD</span>' : flags) + '<a target="_blank" class="userinfo" data-uid="' + message.userId + '">' + message.name + (message.userLevel > 0 ? " (" + ~~message.userLevel + ")" : "") + "</a>: </strong>" + (!!message.giftValue ? ' <span class="gift_flag">' + message.giftValue + "</span> " : "") + (spcClass != "newmod" ? message.comment : "ist jetzt Moderator") + "</span></li>");
     $msg.find("[title]").each(function() {
       $(this).tipso({
         delay: 0,
