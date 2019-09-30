@@ -24,7 +24,7 @@
   "author": "HengiFettlich",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^6.0.9",
+    "electron": "^6.0.10",
     "electron-builder": "^21.2.0",
     "electron-packager": "^14.0.6",
     "electron-winstaller": "^4.0.0"
