@@ -64,6 +64,7 @@ var settings = {
 	showBlocklist: false,
 	showBarCounter: true,
 	showOSD: false,
+	showBroadcasterName: false,
 	feedNoPics: false,
 	hideAvatars: false,
 	hideGifts: false,
@@ -84,6 +85,7 @@ function settingsToCookie() {
 		showBlocklist: settings.showBlocklist,
 		showBarCounter: settings.showBarCounter,
 		showOSD: settings.showOSD,
+		showBroadcasterName: settings.showBroadcasterName,
 		hideAvatars: settings.hideAvatars,
 		hideGifts: settings.hideGifts,
 		hideSuper: settings.hideSuper,
@@ -114,6 +116,10 @@ function adjustLayout() {
 
 	$('#stream').css('width', 'calc(100% - ' + mwidth + 'px)');
 
+	if (settings.showBroadcasterName)
+		$("div.input > input#streamerID").removeClass("blurBroadcasterName");
+	else
+		$("div.input > input#streamerID").addClass("blurBroadcasterName");
 
 	if(settings.hideAvatars)
 		$('#chat').addClass('noavatars');
