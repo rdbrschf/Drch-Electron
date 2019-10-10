@@ -65,6 +65,7 @@ var settings = {
 	showBarCounter: true,
 	showOSD: false,
 	showBroadcasterName: false,
+	showBcastID: true,
 	feedNoPics: false,
 	hideAvatars: false,
 	hideGifts: false,
@@ -86,6 +87,7 @@ function settingsToCookie() {
 		showBarCounter: settings.showBarCounter,
 		showOSD: settings.showOSD,
 		showBroadcasterName: settings.showBroadcasterName,
+		showBcastID: settings.showBcastID,
 		hideAvatars: settings.hideAvatars,
 		hideGifts: settings.hideGifts,
 		hideSuper: settings.hideSuper,
@@ -120,6 +122,11 @@ function adjustLayout() {
 		$("div.input > input#streamerID").removeClass("blurBroadcasterName");
 	else
 		$("div.input > input#streamerID").addClass("blurBroadcasterName");
+
+	if (settings.showBcastID)
+		$("#bcastID").css("display", "block");
+	else
+		$("#bcastID").css("display", "none");
 
 	if(settings.hideAvatars)
 		$('#chat').addClass('noavatars');
@@ -278,7 +285,7 @@ $(document).ready(function () {
 		adjustLayout();
 	})
 
-	$('#showChat').attr('checked', 'checked');
+	$('#showChat, #showBcastID').attr('checked', 'checked');
 
 	if(typeof $.cookie('layout') !== 'undefined') {
 		try {
