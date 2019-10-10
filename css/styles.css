@@ -1348,6 +1348,41 @@ div.input>input#streamerID {
   width: 146px;
 }
 
+div.input>input#streamerID.blurBroadcasterName::-moz-selection {
+  color: transparent;
+  /*
+   * Chrome (and maybe other browsers) bug(s) out if the color is
+   * specified as fully opaque (which is the default).
+   * For some reason it forces such a color value to be transparent,
+   * making the resulting color look different than specified.
+   * We can work around this... interesting behavior... by
+   * specifying an *almost* opaque color value.
+   * The value 0.996 roughly maps to the floating point
+   * representation of 254/255.
+   */
+  background-color: rgba(0, 92, 204, 0.996);
+  text-shadow: 0 0 8px rgba(255, 255, 255, 1.0);
+}
+
+div.input>input#streamerID.blurBroadcasterName::-webkit-selection {
+  color: transparent;
+  /* Check first comment for alpha value 0.996 for an explanation. */
+  background-color: rgba(0, 92, 204, 0.996);
+  text-shadow: 0 0 8px rgba(255, 255, 255, 1.0);
+}
+
+div.input>input#streamerID.blurBroadcasterName::selection {
+  color: transparent;
+  /* Check first comment for alpha value 0.996 for an explanation. */
+  background-color: rgba(0, 92, 204, 0.996);
+  text-shadow: 0 0 8px rgba(255, 255, 255, 1.0);
+}
+
+div.input>input#streamerID.blurBroadcasterName {
+  color: transparent;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 1.0);
+}
+
 #chat.noavatars>ul li>span,iframe{
     width:100%
 }
