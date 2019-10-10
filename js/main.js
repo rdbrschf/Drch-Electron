@@ -199,8 +199,7 @@ function refreshViewers() {
 function getUser(uid, success, error) {
 	$.ajax({
             url: 'https://api.younow.com/php/api/channel/getInfo/channelId=' + uid + '/includeUserKeyWords=1',
-            jsonp: "callback",
-            dataType: "jsonp",
+            dataType: "json",
             success: function (json, b, c) {  
             	success(json);
             },
@@ -423,8 +422,7 @@ Number.prototype.toFormat = function(decimals, decimal_sep, thousands_sep)
 function getTrends() {
 	$.ajax({
 		url: 'https://cdn.younow.com/php/api/younow/dashboard/locale=de/trending=50',
-		jsonp: "callback",
-		dataType: "jsonp",
+		dataType: "json",
 		success: function (json, b, c) {
 			if(json.errorCode == 0) {
 				var str = '';
@@ -452,8 +450,7 @@ function getStreamerStatus() {
 	streamerID = $('#streamerID').val();
 	$.ajax({
 		url: 'https://api.younow.com/php/api/broadcast/info/curId=0/user=' + streamerID,
-		jsonp: "callback",
-		dataType: "jsonp",
+		dataType: "json",
 		success: function (json, b, c) {
 			if (json["errorCode"] > 0 || json.userId == null || !json.hasOwnProperty('state') || !json.hasOwnProperty('user') || json.user == null) {
 				streamerOnline = false;
