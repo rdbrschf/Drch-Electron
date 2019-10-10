@@ -70,7 +70,7 @@ var settings = {
 	hideAvatars: false,
 	hideGifts: false,
 	hideSuper: false,
-	hideTimestamps: true,
+	hideTimestamps: false,
 	hideBlocks: false,
 	soundGift: null,
 	soundBars: null,
