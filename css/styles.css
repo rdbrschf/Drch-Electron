@@ -733,6 +733,27 @@ label[for]{
     cursor:pointer;
     margin-right:15px
 }
+
+#switcher .bcastID.fill {
+  position: relative;
+  margin: 0;
+  margin-left: 10px;
+  height: 100%;
+  box-sizing: border-box
+}
+
+#bcastID-data {
+  margin-top: -5px;
+  padding-top: 0;
+  font-style: italic;
+  font-size: 16px;
+}
+
+#bcastID-data > pre {
+  font-style: normal;
+  font-weight: bold;
+}
+
 a#tweetButton{
     position:absolute;
     right:10px;

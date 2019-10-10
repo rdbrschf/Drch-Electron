@@ -628,6 +628,8 @@ YouNowPlayer.prototype.disconnected = function() {
     $('#connect').html(this.language["disconnected"]);
     $('#streamerInfo').html("");
     $('#top').html("");
+    $("#bcastID-data > pre").html("");
+    $("#bcastID-data").css("display", "none");
     this.isConnected = false;
 };
 YouNowPlayer.prototype.streamerData = {};
@@ -645,6 +647,9 @@ YouNowPlayer.prototype.connected = function(streamerData) {
     for (var i in streamerData.comments) {
         this.addChatMessage(streamerData.comments[i], undefined, true);
     }
+
+    $("#bcastID-data > pre").html(this.streamerData.broadcastId);
+    $("#bcastID-data").css("display", "block");
 
     $('#linkButton').siblings('.popup').find('p > span').text($('#streamerID').val());
     $('#linkButton').siblings('.popup').find('textarea').text([location.protocol, '//', location.host, location.pathname].join('') + '?s=' + $('#streamerID').val());
