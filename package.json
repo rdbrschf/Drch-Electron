@@ -29,7 +29,7 @@
     "start": "electron .",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
-    "release": "electron-builder -w --publish always"
+    "release": "electron-builder --publish always"
   },
   "author": "HengiFettlich",
   "license": "WTFPL",
