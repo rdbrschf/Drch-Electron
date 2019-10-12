@@ -198,7 +198,7 @@ Trends:
 <li>Plugin öffnen, auf die drei Punkte klicken, dann auf "Import Profile"</li>
 <li>
 <p>Folgendes ins Textfeld kopieren:</p>
-<textarea readonly>{"title":"Profile 1","hideComment":"","headers":[{"enabled":true,"name":"Origin","value":"younow.com","comment":""}],"respHeaders":[],"filters":[{"enabled":true,"type":"urls","urlRegex":"wss://signaling.younow-prod.video.propsproject.com/.*"}],"appendMode":""}</textarea>
+<textarea readonly>{"title":"Profile 1","hideComment":"","headers":[{"enabled":true,"name":"Origin","value":"younow.com","comment":""}],"respHeaders":[{"enabled":true,"name":"Access-Control-Allow-Origin","value":"*","comment":""}],"filters":[{"enabled":true,"type":"urls","urlRegex":"https://api.younow.com/"},{"enabled":true,"type":"urls","urlRegex":"https://cdn.younow.com/"},{"enabled":true,"type":"urls","urlRegex":"wss://signaling.younow-prod.video.propsproject.com/"}],"appendMode":""}</textarea>
 </li>
 <li>Bestätigen und Seite neu laden. "Tab lock" muss nicht aktiviert werden.</li>
 </ol>
