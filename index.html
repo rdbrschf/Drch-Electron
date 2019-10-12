@@ -11,14 +11,14 @@
       <script>window.$ = window.jQuery = require("jquery");</script>
       <script>WebSocket = require("ws");</script>
       <script src="https://use.fontawesome.com/8ccef0adc1.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.slim.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.slim.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/featherlight/1.7.0/featherlight.min.css" type="text/css"/>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.7.0/css/perfect-scrollbar.min.css" type="text/css"/>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.7.0/js/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/featherlight/1.7.13/featherlight.min.css" type="text/css"/>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.4.0/css/perfect-scrollbar.min.css" type="text/css"/>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.4.0/perfect-scrollbar.js" type="text/javascript"></script>
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tipsy/1.0.3/jquery.tipsy.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/featherlight/1.7.0/featherlight.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/featherlight/1.7.13/featherlight.min.js"></script>
    </head>
    <body>
       <div id="switcher">
@@ -28,13 +28,6 @@
             <div class="input" title="Stopp"><button id="stop"><i class="fa fa-stop"></i></button></div>
          </div>
 
-         <div class="btn_box" style="display:none">
-            <button id="linkButton" title="Direktlink zum Streamer" /><i class="fa fa-mail-forward"></i></button>
-            <div class="popup">
-               <p>Direktlink zu <span style="font-style:italic"></span>:</p>
-               <textarea readonly></textarea>
-            </div>
-         </div>
          <div class="btn_box">
             <button id="settingsBtn" title="Einstellungen" /><i class="fa fa-gear"></i></button>
             <div class="popup">
@@ -65,7 +58,7 @@
          </div>
          <div class="right">
             <div class="btn_box" style="display:none; padding:3px; margin-right:10px">
-               <button id="snapshotButton" style="background:#118D67;" /><i class="fa fa-camera"></i> Snapshot</button>
+               <button id="snapshotButton" style="background:#118D67;"><i class="fa fa-camera"></i> Snapshot</button>
             </div>
             <div id="datetime">-</div>
          </div>
@@ -141,7 +134,7 @@
          </div>
       </div>
 
-      <script src="https://js.pusher.com/2.2/pusher.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/pusher/5.0.2/pusher.min.js"></script>
       <script>toastr = require("./js/toastr.min.js");</script>
       <script type="text/javascript" src="js/notificationQueue.js"></script>
       <script type="text/javascript" src="js/YouNowPlayer.js"></script>

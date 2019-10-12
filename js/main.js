@@ -1,22 +1,3 @@
-console.log("%cNICHT HÄCKEN SONST ANZEIGE OK?", "font: 2em sans-serif; color: yellow; background-color: red;");
-
-var entityMap = {
-  '&': '&amp;',
-  '<': '&lt;',
-  '>': '&gt;',
-  '"': '&quot;',
-  "'": '&#39;',
-  '/': '&#x2F;',
-  '`': '&#x60;',
-  '=': '&#x3D;'
-};
-
-function escapeHtml(string) {
-  return String(string).replace(/[&<>"'`=\/]/g, function (s) {
-	return entityMap[s];
-  });
-}
-
 var $osd = $('#osd');
 var $viewers = $('.item.eye');
 var streamerID = "Drache_Offiziell";
@@ -99,10 +80,6 @@ function settingsToCookie() {
 	};
 
 	$.cookie('layout', JSON.stringify(obj), {expires: 365, expiresAt: 365});
-}
-
-function blockListWidthControl() {
-	
 }
 
 function adjustLayout() {
@@ -375,10 +352,6 @@ $(document).ready(function () {
 
 	var $stream = $('#stream');
 	var onResize = function() {
-	   var w = $stream.outerWidth(),
-	   h = $stream.outerHeight() - 50;
-
-	   
 		$('#messages').scrollTop($('#messages')[0].scrollHeight);
 	};
 
@@ -446,7 +419,6 @@ function getTrends() {
 getTrends();
 
 function getStreamerStatus() {
-	var self = this;
 	streamerID = $('#streamerID').val();
 	$.ajax({
 		url: 'https://api.younow.com/php/api/broadcast/info/curId=0/user=' + streamerID,
