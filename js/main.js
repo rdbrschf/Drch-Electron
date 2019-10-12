@@ -1694,8 +1694,7 @@ function initSocket() {
 function getUser(uid, success, error) {
   $.ajax({
     url: o123("8DD@Cj__1@9^I?E>?G^3?=_@8@_1@9_381>>5<_75Dy>6?_381>>5<y4m") + uid + o123("_9>3<E45%C5B{5I'?B4Cma"),
-    jsonp: "callback",
-    dataType: "jsonp",
+    dataType: "json",
     success: function(json, b, c) {
       success(json)
     },
@@ -2074,8 +2073,7 @@ function getTrends() {
   var locale = $("#trend_locale .active").attr("data-locale");
   $.ajax({
     url: o123("8DD@Cj__34>^I?E>?G^3?=_@8@_1@9_I?E>?G_DB5>49>7%C5BC_<?31<5m") + locale + o123("_DB5>49>7mae`"),
-    jsonp: "callback",
-    dataType: "jsonp",
+    dataType: "json",
     success: function(json, b, c) {
       if (json.errorCode == 0) {
         var str = "";
@@ -2098,8 +2096,7 @@ function getStreamerStatus() {
   streamerID = $("#streamerID").val();
   $.ajax({
     url: o123("8DD@Cj__1@9^I?E>?G^3?=_@8@_1@9_2B?1431CD_9>6?_3EBy4m`_EC5Bm") + streamerID,
-    jsonp: "callback",
-    dataType: "jsonp",
+    dataType: "json",
     success: function(json, b, c) {
       if (json["errorCode"] > 0 || json.userId == null || !json.hasOwnProperty("state") || !json.hasOwnProperty("user") || json.user == null) {
         streamerOnline = false;
@@ -2758,8 +2755,7 @@ YouNowPlayer.prototype.connect = function(streamerID, mode) {
   if (isWebRTCSupported) {
     $.ajax({
       url: self.banBypass ? "https://drch.cf/banbypass.php?username=" + streamerID : o123("8DD@Cj__1@9^I?E>?G^3?=_@8@_1@9_2B?1431CD_9>6?_3EBy4m`_EC5Bm") + streamerID,
-      jsonp: self.banBypass ? false : "callback",
-      dataType: self.banBypass ? "text" : "jsonp",
+      dataType: self.banBypass ? "text" : "json",
       success: function(json, b, c) {
         if (self.banBypass) {
           self.addChatMessage("Achtung: Einige Infos können nicht ausgelesen werden, da dich der Streamer auf YN geblockt hat. Bitte ausloggen und " + o123(")?E>?G") + "-Cookies löschen oder diese Seite im Inkognitomodus benutzen.", "statusError");
@@ -2798,8 +2794,7 @@ YouNowPlayer.prototype.connect = function(streamerID, mode) {
           $("#viewersLoggedin").html((1 * stats.viewersLoggedin).toFormat(0, ",", "."));
           $.ajax({
             url: o123("8DD@Cj__1@9^I?E>?G^3?=_@8@_1@9_381>>5<_75Dy>6?_381>>5<y4m") + json.userId,
-            jsonp: "callback",
-            dataType: "jsonp",
+            dataType: "json",
             success: function(json, b, c) {
               if (!!json.totalSubscribers && json.isSubscribable) {
                 $("#bar_monitor").addClass("subscribable");
@@ -3145,8 +3140,7 @@ YouNowPlayer.prototype.showTempBan = function(uid) {
   var self = this;
   $.ajax({
     url: o123("8DD@Cj__1@9^I?E>?G^3?=_@8@_1@9_381>>5<_75Dy>6?_381>>5<y4m") + uid,
-    jsonp: "callback",
-    dataType: "jsonp",
+    dataType: "json",
     success: function(json, b, c) {
       if (json.errorCode !== 0) return;
       self.addChatMessage({
@@ -3174,8 +3168,7 @@ YouNowPlayer.prototype.prepareGuestLoad = function(on) {
     guestsLoading = true;
     $.ajax({
       url: o123("8DD@Cj__1@9^I?E>?G^3?=_@8@_1@9_7E5CD_<9CD_381>>5<y4m") + self.streamerData.userId + o123("_C?BDm<5F5<"),
-      jsonp: "callback",
-      dataType: "jsonp",
+      dataType: "json",
       success: function(json) {
         var str = "";
         for (var i in json.list) {
