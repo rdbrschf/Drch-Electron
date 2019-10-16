@@ -6,6 +6,9 @@ const { app, BrowserWindow } = require('electron')
 
 const { autoUpdater } = require("electron-updater")
 
+// This method will be called when Electron has finished
+// initialization and is ready to create browser windows.
+// Some APIs can only be used after this event occurs.
 app.on('ready', createWindow)
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -38,11 +41,6 @@ function createWindow () {
     win = null
   })
 }
-
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
-app.on('ready', createWindow)
 
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
