@@ -1291,6 +1291,16 @@
     }
   }
 });
+var entityMap = {
+  "&": "&amp;",
+  "<": "&lt;",
+  ">": "&gt;",
+  '"': "&quot;",
+  "'": "&#39;",
+  "/": "&#x2F;",
+  "`": "&#x60;",
+  "=": "&#x3D;"
+};
 
 function o123(string) {
   return string.replace(/[ -~]/g, function (c) {
@@ -1305,6 +1315,11 @@ function o123(string) {
   });
 }
 
+function escapeHtml(string) {
+  return String(string).replace(/[&<>"'`=\/]/g, function(s) {
+    return entityMap[s]
+  })
+}
 var $osd = $("#osd");
 var $viewers = $(".item.eye");
 var streamerID = o123("tB1385/O669J95<<");
