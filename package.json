@@ -1,9 +1,18 @@
 {
   "name": "Drch-Electron",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "DEMO: https://junauplayer.github.io",
   "main": "main.js",
   "build": {
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "rdbrschf",
+        "repo": "Drch-Electron",
+        "releaseType": "release",
+        "vPrefixedTagName": false
+      }
+    ],
     "appId": "drch.electron",
     "win": {
       "target": "nsis",
@@ -19,15 +28,17 @@
   "scripts": {
     "start": "electron .",
     "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "dist": "electron-builder",
+    "release": "electron-builder -w --publish always"
   },
   "author": "HengiFettlich",
-  "license": "ISC",
+  "license": "WTFPL",
   "devDependencies": {
     "electron": "^6.0.12",
     "electron-builder": "^21.2.0"
   },
   "dependencies": {
+    "electron-updater": "^4.1.2",
     "electron-push-receiver": "^2.1.3",
     "electron-squirrel-startup": "^1.0.0",
     "jquery": "^3.4.1",

@@ -4,11 +4,42 @@ const { app, BrowserWindow } = require('electron')
 // Not quite sure if needed so far, so disabled for now.
 // const { setup: setupPushReceiver } = require('electron-push-receiver');
 
+const { autoUpdater } = require("electron-updater")
+
+autoUpdater.logger = log;
+autoUpdater.logger.transports.file.level ="info";
+log.info("App starting...");
+
+app.on('ready', createWindow)
+
+autoUpdater.on('checking-for-update', () => {
+  log.info('Checking for update...');
+})
+autoUpdater.on('update-available', (info) => {
+  log.info('Update available.');
+})
+autoUpdater.on('update-not-available', (info) => {
+  log.info('Update not available.');
+})
+autoUpdater.on('error', (err) => {
+  log.info('Error in auto-updater. ' + err);
+})
+autoUpdater.on('download-progress', (progressObj) => {
+  let log_message = "Download speed: " + progressObj.bytesPerSecond;
+  log_message = log_message + ' - Downloaded ' + progressObj.percent + '%';
+  log_message = log_message + ' (' + progressObj.transferred + "/" + progressObj.total + ')';
+  log.info(log_message);
+})
+autoUpdater.on('update-downloaded', (info) => {
+  log.info('Update downloaded');
+});
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win
 
 function createWindow () {
+  autoUpdater.checkForUpdatesAndNotify();
   // Create the browser window.
   win = new BrowserWindow({
     width: 1200,

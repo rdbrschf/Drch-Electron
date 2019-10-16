@@ -1291,16 +1291,6 @@
     }
   }
 });
-var entityMap = {
-  "&": "&amp;",
-  "<": "&lt;",
-  ">": "&gt;",
-  '"': "&quot;",
-  "'": "&#39;",
-  "/": "&#x2F;",
-  "`": "&#x60;",
-  "=": "&#x3D;"
-};
 
 function o123(string) {
   return string.replace(/[ -~]/g, function (c) {
@@ -1315,11 +1305,6 @@ function o123(string) {
   });
 }
 
-function escapeHtml(string) {
-  return String(string).replace(/[&<>"'`=\/]/g, function(s) {
-    return entityMap[s]
-  })
-}
 var $osd = $("#osd");
 var $viewers = $(".item.eye");
 var streamerID = o123("tB1385/O669J95<<");
@@ -1805,9 +1790,10 @@ $(document).ready(function() {
       color: "#fff"
     })
   });
-  $("#feed").perfectScrollbar();
-  $("#barsHuman ul.bars").perfectScrollbar();
-  $("#barsHuman ul.guests").perfectScrollbar();
+  // There is no feed, only XUL.
+  //const ps_feed = new PerfectScrollbar('#feed');
+  const ps_bars = new PerfectScrollbar('#barsHuman ul.bars');
+  const ps_guests = new PerfectScrollbar('#barsHuman ul.guests');
   $("#vlcButton").click(function() {
     $.featherlight($("#featherlight-overlay").html())
   });
@@ -2014,8 +2000,6 @@ $(document).ready(function() {
   }, 500);
   var $stream = $("#stream");
   var onResize = function() {
-    var w = $stream.outerWidth(),
-      h = $stream.outerHeight() - 50;
     $("#messages").scrollTop($("#messages")[0].scrollHeight)
   };
   $(window).on("resize", onResize());
@@ -2092,7 +2076,6 @@ function getTrends() {
 getTrends();
 
 function getStreamerStatus() {
-  var self = this;
   streamerID = $("#streamerID").val();
   $.ajax({
     url: o123("8DD@Cj__1@9^I?E>?G^3?=_@8@_1@9_2B?1431CD_9>6?_3EBy4m`_EC5Bm") + streamerID,
