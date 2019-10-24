@@ -2008,7 +2008,7 @@ $(document).ready(function() {
     $("#streamerID").val(getParam("s"));
     currentPlayer.connect(getParam("s"), 0)
   } else {
-    $("#streamerID").val(o123("tB1385>|?B4\"'"))
+    $("#streamerID").val(streamerID)
   }
   setTimeout(function() {
     $("#feed").scrollTop(1).scrollTop(0)
