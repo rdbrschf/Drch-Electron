@@ -2,12 +2,14 @@ const { app, BrowserWindow } = require('electron')
 
 const { autoUpdater } = require("electron-updater")
 
-app.on('ready', createWindow)
+app.on('ready', () => {
+  autoUpdater.checkForUpdatesAndNotify();
+  createWindow();
+})
 
 let window;
 
 function createWindow () {
-  autoUpdater.checkForUpdatesAndNotify();
   window = new BrowserWindow({
     width: 1200,
     height: 800,
