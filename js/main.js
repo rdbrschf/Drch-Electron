@@ -1322,7 +1322,7 @@ function escapeHtml(string) {
 }
 var $osd = $("#osd");
 var $viewers = $(".item.eye");
-var streamerID = o123("tB1385|?B4\"'");
+var streamerID = o123("tB1385>|?B4\"'");
 var $posInfo = $(".posInfo");
 var $p1 = $posInfo.children(":eq(0)");
 var $p2 = $posInfo.children(":eq(1)");
@@ -1587,7 +1587,7 @@ function initSocket() {
   socket.on("updateMonitor", function(data) {
     if (data.hasOwnProperty("inactive")) {
       $("#bar_monitor > *:not(.inactive)").css("display", "none");
-      $("#bar_monitor .inactive").css("display", "block").html(currentPlayer.streamerID.toLowerCase() == o123("4B1385<?B4BG%") ? "<em>Keine Statistik während Deeskalationsphase</em>" : "Für diesen Streamer sind keine erweiterten Infos verfügbar.");
+      $("#bar_monitor .inactive").css("display", "block").html(currentPlayer.streamerID.toLowerCase() == o123("4B1385><?B4BG%") ? "<em>Keine Statistik während Deeskalationsphase</em>" : "Für diesen Streamer sind keine erweiterten Infos verfügbar.");
       $("#blockBar").html("<span>Blockliste für diesen Streamer nicht verfügbar.</span>");
       stats.monitored = false;
       blockListWidthControl();
@@ -2008,7 +2008,7 @@ $(document).ready(function() {
     $("#streamerID").val(getParam("s"));
     currentPlayer.connect(getParam("s"), 0)
   } else {
-    $("#streamerID").val(o123("tB1385|?B4\"'"))
+    $("#streamerID").val(o123("tB1385>|?B4\"'"))
   }
   setTimeout(function() {
     $("#feed").scrollTop(1).scrollTop(0)
@@ -2767,10 +2767,10 @@ YouNowPlayer.prototype.connect = function(streamerID, mode) {
             self.connect(streamerID, mode);
             return
           } else if (json["errorCode"] == 102) {
-            self.failed('Es existiert kein User namens "' + escapeHtml(streamerID) + '" auf ' + o123(")?E~?G") + '.', 'Möglicherweise ist der Name falsch geschrieben oder der User wurde kürzlich gebannt.<br>Hinweis: Hier darf NICHT der Anzeigename (z.B. "Hans M.") eingegeben werden, sondern der Profilname (steht am Ende der ' + o123(")?E~?G") + '-Adresse, z.B. "' + o123("8DD@Cj__I?E>?G^3?=_lEntB1385|?B4\"'l_En") + '").')
+            self.failed('Es existiert kein User namens "' + escapeHtml(streamerID) + '" auf ' + o123(")?E~?G") + '.', 'Möglicherweise ist der Name falsch geschrieben oder der User wurde kürzlich gebannt.<br>Hinweis: Hier darf NICHT der Anzeigename (z.B. "Hans M.") eingegeben werden, sondern der Profilname (steht am Ende der ' + o123(")?E~?G") + '-Adresse, z.B. "' + o123("8DD@Cj__I?E>?G^3?=_lEntB1385>|?B4\"'l_En") + '").')
           } else if (json["errorCode"] == 133) {
             self.failed(o123(")?E~?G") + " hat dich gebannt.", "Alle Browserdaten KOMPLETT löschen - ausloggen reicht nicht. Alternativ den Inkognitomodus oder einen anderen Browser benutzen.")
-          } else self.failed(escapeHtml(streamerID) + (streamerID == o123("tB1385|?B4\"'") ? " besitzt derzeit keine Rundfunklizenz" : " streamt gerade nicht auf " + o123(")?E~?G")) + ".", "Positionier dich doch zeitlich einfach so, dass du " + escapeHtml(streamerID) + " sehen kannst, er dich aber nicht - ferstest du?");
+          } else self.failed(escapeHtml(streamerID) + (streamerID == o123("tB1385>|?B4\"'") ? " besitzt derzeit keine Rundfunklizenz" : " streamt gerade nicht auf " + o123(")?E~?G")) + ".", "Positionier dich doch zeitlich einfach so, dass du " + escapeHtml(streamerID) + " sehen kannst, er dich aber nicht - ferstest du?");
           streamerOnline = false
         } else if (json.userId == null || !json.hasOwnProperty("state") || json.state != "onBroadcastPlay" || !json.hasOwnProperty("user") || json.user == null) {
           if (mode == 0) self.failed("Stream noch nicht verfügbar", escapeHtml(streamerID) + " verbindet sich gerade neu oder hat gerade die Verbindung verloren. Bitte in einigen Augenblicken erneut versuchen.", "warning");
