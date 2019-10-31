@@ -17,7 +17,7 @@ var entityMap = {
   
 var $osd = $('#osd');
 var $viewers = $('.item.eye');
-var streamerID = "DrachelordRW";
+var streamerID = "DrachenlordRW";
 var $posInfo = $('.posInfo');
 var $p1 = $posInfo.children(':eq(0)');
 var $p2 = $posInfo.children(':eq(1)');
