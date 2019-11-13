@@ -1546,8 +1546,8 @@ function initSocket() {
     reconnectionAttempts: 99999
   });
   socket.on("reconnect", function() {
-    if (currentPlayer.isConnected) socket.emit("changeStreamer", {
-      streamer: $("#streamerID").val()
+    if (currentPlayer.isConnected && window.userId) socket.emit("changeStreamer", {
+      channelId: window.userId
     })
   });
   socket.on("viewer", function(data) {
@@ -2790,8 +2790,9 @@ YouNowPlayer.prototype.connect = function(streamerID, mode) {
                 $("#bar_monitor").removeClass("subscribable")
               }
               self.streamerData.isPartner = json.isPartner;
+              window.userId = json.userId;
               socket.emit("changeStreamer", {
-                streamer: self.streamerID,
+                channelId: window.userId,
                 amtssprache: getParam("amtssprache")
               })
             }
