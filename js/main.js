@@ -2104,19 +2104,7 @@ function getStreamerStatus() {
       } else {
         streamerOnline = true;
         stats.subonly = json.chatMode != 0;
-        // Fuckers managed to change chat filter levels without modifying the data returned by their
-        // own API.
-        // Fix that up manually.
-        // Nowadays, the lower chat filter level (previously 5) maps to level 2, while the higher chat
-        // filter level (formerly 10) maps to level 5.
-        // Other values are passed-through as-are.
         stats.lowlevel = json.minChatLevel;
-        if (stats.lowlevel == 5) {
-          stats.lowlevel = 2;
-        }
-        else if (stats.lowlevel == 10) {
-          stats.lowlevel = 5;
-        }
         stats.mods = !!json.broadcastMods ? JSON.parse(json.broadcastMods).length : 0;
         stats.viewersLoggedin = json.lviewers;
         stats.viewersTotal = json.viewsWithThreshold;
