@@ -2792,8 +2792,7 @@ YouNowPlayer.prototype.connect = function(streamerID, mode) {
               self.streamerData.isPartner = json.isPartner;
               window.userId = json.userId;
               socket.emit("changeStreamer", {
-                channelId: window.userId,
-                amtssprache: getParam("amtssprache")
+                channelId: window.userId
               })
             }
           });
