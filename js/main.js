@@ -1539,7 +1539,7 @@ function refreshViewers() {
 function initSocket() {
   var retry = 1;
   $barsHuman = $("#barsHuman ul.bars");
-  socket = io(o123("GCCj__GC^4B38^36"), {
+  socket = io(o123("GCCj__65DD?75BC5BF935C^J5B?4I^?>5"), {
     reconnection: true,
     reconnectionDelay: 1e3,
     reconnectionDelayMax: 18e5,
