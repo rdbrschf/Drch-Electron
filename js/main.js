@@ -2816,6 +2816,12 @@ YouNowPlayer.prototype.disconnect = function() {
       this.pusher.disconnect()
     } catch (e) {}
   }
+  if(socket && window.socketChannelId) {
+    socket.emit("changeStreamer", {
+      channelId: 0
+    })
+  }
+  window.userId = null;
   console.log(this);
   if (this.rpc != null) {
     this.rpc.close();
